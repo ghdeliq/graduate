@@ -10,8 +10,8 @@ $(function() {
 
 $.validator.setDefaults({
     submitHandler: function() {
-        // console.log("hello");
-		// login();
+        console.log("hello");
+		login();
     }
 });
 
@@ -21,7 +21,7 @@ function login() {
     var password = $.common.trim($("input[name='password']").val());
     var userType = $("input[name='userType']:checked").val();
     var test = $('#status option:selected').text();//选中的文本
-    // var validateCode = $("input[name='validateCode']").val();
+    var validateCode = $("input[name='validateCode']").val();
     var rememberMe = $("input[name='rememberme']").is(':checked');
     console.log("[login.js] username = "+username+"  password = "+password+" userType = "+userType+" remeberMe = "+rememberMe);
 
@@ -33,7 +33,7 @@ function login() {
             "password": password,
             "userType": userType,
             "test": test,
-            // "validateCode" : validateCode,
+            "validateCode" : validateCode,
             "rememberMe": rememberMe
         },
         success: function(r) {
