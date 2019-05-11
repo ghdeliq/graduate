@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.CourseClassMapper">
+    
+    <resultMap type="CourseClass" id="CourseClassResult">
+        <result property="ccId"    column="cc_id"    />
+        <result property="courseId"    column="course_id"    />
+        <result property="classId"    column="class_id"    />
+        <result property="ccSemester"    column="cc_semester"    />
+    </resultMap>
+	
+	<sql id="selectCourseClassVo">
+        select cc_id, course_id, class_id, cc_semester from sys_course_class
+    </sql>
+	
+    <select id="selectCourseClassList" parameterType="CourseClass" resultMap="CourseClassResult">
+        <include refid="selectCourseClassVo"/>
+        <where>  
+            <if test="ccId != null "> and cc_id = #{ccId}</if>
+             <if test="courseId != null "> and course_id = #{courseId}</if>
+             <if test="classId != null "> and class_id = #{classId}</if>
+             <if test="ccSemester != null  and ccSemester != '' "> and cc_semester = #{ccSemester}</if>
+         </where>
+    </select>
+    
+    <select id="selectCourseClassById" parameterType="Integer" resultMap="CourseClassResult">
+        <include refid="selectCourseClassVo"/>
+        where cc_id = #{ccId}
+    </select>
+        
+    <insert id="insertCourseClass" parameterType="CourseClass" useGeneratedKeys="true" keyProperty="ccId">
+        insert into sys_course_class
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="courseId != null  ">course_id,</if>
+			<if test="classId != null  ">class_id,</if>
+			<if test="ccSemester != null  and ccSemester != ''  ">cc_semester,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="courseId != null  ">#{courseId},</if>
+			<if test="classId != null  ">#{classId},</if>
+			<if test="ccSemester != null  and ccSemester != ''  ">#{ccSemester},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateCourseClass" parameterType="CourseClass">
+        update sys_course_class
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="courseId != null  ">course_id = #{courseId},</if>
+            <if test="classId != null  ">class_id = #{classId},</if>
+            <if test="ccSemester != null  and ccSemester != ''  ">cc_semester = #{ccSemester},</if>
+        </trim>
+        where cc_id = #{ccId}
+    </update>
+
+	<delete id="deleteCourseClassById" parameterType="Integer">
+        delete from sys_course_class where cc_id = #{ccId}
+    </delete>
+	
+    <delete id="deleteCourseClassByIds" parameterType="String">
+        delete from sys_course_class where cc_id in 
+        <foreach item="ccId" collection="array" open="(" separator="," close=")">
+            #{ccId}
+        </foreach>
+    </delete>
+    
+</mapper>

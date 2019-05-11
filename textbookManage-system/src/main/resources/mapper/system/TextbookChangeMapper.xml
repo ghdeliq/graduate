@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.TextbookChangeMapper">
+    
+    <resultMap type="TextbookChange" id="TextbookChangeResult">
+        <result property="tcId"    column="tc_id"    />
+        <result property="tcCourseId"    column="tc_course_id"    />
+        <result property="tcOldTextbook"    column="tc_old_textbook"    />
+        <result property="tcNewTextbook"    column="tc_new_textbook"    />
+        <result property="tcNewPrice"    column="tc_new_price"    />
+        <result property="tcChangeBy"    column="tc_change_by"    />
+        <result property="tcUpTime"    column="tc_up_time"    />
+        <result property="tcCheckBy"    column="tc_check_by"    />
+        <result property="tcCheckTime"    column="tc_check_time"    />
+        <result property="tcState"    column="tc_state"    />
+    </resultMap>
+	
+	<sql id="selectTextbookChangeVo">
+        select tc_id, tc_course_id, tc_old_textbook, tc_new_textbook, tc_new_price, tc_change_by, tc_up_time, tc_check_by, tc_check_time, tc_state from sys_textbook_change
+    </sql>
+	
+    <select id="selectTextbookChangeList" parameterType="TextbookChange" resultMap="TextbookChangeResult">
+        <include refid="selectTextbookChangeVo"/>
+        <where>  
+            <if test="tcId != null "> and tc_id = #{tcId}</if>
+             <if test="tcCourseId != null "> and tc_course_id = #{tcCourseId}</if>
+             <if test="tcOldTextbook != null  and tcOldTextbook != '' "> and tc_old_textbook = #{tcOldTextbook}</if>
+             <if test="tcNewTextbook != null  and tcNewTextbook != '' "> and tc_new_textbook = #{tcNewTextbook}</if>
+             <if test="tcNewPrice != null "> and tc_new_price = #{tcNewPrice}</if>
+             <if test="tcChangeBy != null  and tcChangeBy != '' "> and tc_change_by = #{tcChangeBy}</if>
+             <if test="tcUpTime != null "> and tc_up_time = #{tcUpTime}</if>
+             <if test="tcCheckBy != null  and tcCheckBy != '' "> and tc_check_by = #{tcCheckBy}</if>
+             <if test="tcCheckTime != null "> and tc_check_time = #{tcCheckTime}</if>
+             <if test="tcState != null "> and tc_state = #{tcState}</if>
+         </where>
+    </select>
+    
+    <select id="selectTextbookChangeById" parameterType="Integer" resultMap="TextbookChangeResult">
+        <include refid="selectTextbookChangeVo"/>
+        where tc_id = #{tcId}
+    </select>
+        
+    <insert id="insertTextbookChange" parameterType="TextbookChange" useGeneratedKeys="true" keyProperty="tcId">
+        insert into sys_textbook_change
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tcCourseId != null  ">tc_course_id,</if>
+			<if test="tcOldTextbook != null  and tcOldTextbook != ''  ">tc_old_textbook,</if>
+			<if test="tcNewTextbook != null  and tcNewTextbook != ''  ">tc_new_textbook,</if>
+			<if test="tcNewPrice != null  ">tc_new_price,</if>
+			<if test="tcChangeBy != null  and tcChangeBy != ''  ">tc_change_by,</if>
+			<if test="tcUpTime != null  ">tc_up_time,</if>
+			<if test="tcCheckBy != null  and tcCheckBy != ''  ">tc_check_by,</if>
+			<if test="tcCheckTime != null  ">tc_check_time,</if>
+			<if test="tcState != null  ">tc_state,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="tcCourseId != null  ">#{tcCourseId},</if>
+			<if test="tcOldTextbook != null  and tcOldTextbook != ''  ">#{tcOldTextbook},</if>
+			<if test="tcNewTextbook != null  and tcNewTextbook != ''  ">#{tcNewTextbook},</if>
+			<if test="tcNewPrice != null  ">#{tcNewPrice},</if>
+			<if test="tcChangeBy != null  and tcChangeBy != ''  ">#{tcChangeBy},</if>
+			<if test="tcUpTime != null  ">#{tcUpTime},</if>
+			<if test="tcCheckBy != null  and tcCheckBy != ''  ">#{tcCheckBy},</if>
+			<if test="tcCheckTime != null  ">#{tcCheckTime},</if>
+			<if test="tcState != null  ">#{tcState},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateTextbookChange" parameterType="TextbookChange">
+        update sys_textbook_change
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="tcCourseId != null  ">tc_course_id = #{tcCourseId},</if>
+            <if test="tcOldTextbook != null  and tcOldTextbook != ''  ">tc_old_textbook = #{tcOldTextbook},</if>
+            <if test="tcNewTextbook != null  and tcNewTextbook != ''  ">tc_new_textbook = #{tcNewTextbook},</if>
+            <if test="tcNewPrice != null  ">tc_new_price = #{tcNewPrice},</if>
+            <if test="tcChangeBy != null  and tcChangeBy != ''  ">tc_change_by = #{tcChangeBy},</if>
+            <if test="tcUpTime != null  ">tc_up_time = #{tcUpTime},</if>
+            <if test="tcCheckBy != null  and tcCheckBy != ''  ">tc_check_by = #{tcCheckBy},</if>
+            <if test="tcCheckTime != null  ">tc_check_time = #{tcCheckTime},</if>
+            <if test="tcState != null  ">tc_state = #{tcState},</if>
+        </trim>
+        where tc_id = #{tcId}
+    </update>
+
+	<delete id="deleteTextbookChangeById" parameterType="Integer">
+        delete from sys_textbook_change where tc_id = #{tcId}
+    </delete>
+	
+    <delete id="deleteTextbookChangeByIds" parameterType="String">
+        delete from sys_textbook_change where tc_id in 
+        <foreach item="tcId" collection="array" open="(" separator="," close=")">
+            #{tcId}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-textbookChange-add">
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">课程编号：</label>
+				<div class="col-sm-8">
+					<input id="tcCourseId" name="tcCourseId" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">旧教材：</label>
+				<div class="col-sm-8">
+					<input id="tcOldTextbook" name="tcOldTextbook" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">要更换的新教材：</label>
+				<div class="col-sm-8">
+					<input id="tcNewTextbook" name="tcNewTextbook" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">新教材的价格：</label>
+				<div class="col-sm-8">
+					<input id="tcNewPrice" name="tcNewPrice" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申请人(教师工号）：</label>
+				<div class="col-sm-8">
+					<input id="tcChangeBy" name="tcChangeBy" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申请时间：</label>
+				<div class="col-sm-8">
+					<input id="tcUpTime" name="tcUpTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">审核人(管理员ID）：</label>
+				<div class="col-sm-8">
+					<input id="tcCheckBy" name="tcCheckBy" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">审核时间：</label>
+				<div class="col-sm-8">
+					<input id="tcCheckTime" name="tcCheckTime" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">当前审核状态(0：提交，待审核;1：通过;2：驳回)：</label>
+				<div class="col-sm-8">
+					<input id="tcState" name="tcState" class="form-control" type="text">
+				</div>
+			</div>
+		</form>
+	</div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "textbook/textbookChange"
+		$("#form-textbookChange-add").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/add", $('#form-textbookChange-add').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

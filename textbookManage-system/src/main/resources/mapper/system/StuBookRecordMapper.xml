@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.StuBookRecordMapper">
+    
+    <resultMap type="StuBookRecord" id="StuBookRecordResult">
+        <result property="sbrId"    column="sbr_id"    />
+        <result property="sbrStuId"    column="sbr_stu_id"    />
+        <result property="sbrCourseId"    column="sbr_course_id"    />
+        <result property="sbrTime"    column="sbr_time"    />
+    </resultMap>
+	
+	<sql id="selectStuBookRecordVo">
+        select sbr_id, sbr_stu_id, sbr_course_id, sbr_time from sys_stu_book_record
+    </sql>
+	
+    <select id="selectStuBookRecordList" parameterType="StuBookRecord" resultMap="StuBookRecordResult">
+        <include refid="selectStuBookRecordVo"/>
+        <where>  
+            <if test="sbrId != null "> and sbr_id = #{sbrId}</if>
+             <if test="sbrStuId != null  and sbrStuId != '' "> and sbr_stu_id = #{sbrStuId}</if>
+             <if test="sbrCourseId != null "> and sbr_course_id = #{sbrCourseId}</if>
+             <if test="sbrTime != null "> and sbr_time = #{sbrTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectStuBookRecordById" parameterType="Integer" resultMap="StuBookRecordResult">
+        <include refid="selectStuBookRecordVo"/>
+        where sbr_id = #{sbrId}
+    </select>
+        
+    <insert id="insertStuBookRecord" parameterType="StuBookRecord" useGeneratedKeys="true" keyProperty="sbrId">
+        insert into sys_stu_book_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sbrStuId != null  and sbrStuId != ''  ">sbr_stu_id,</if>
+			<if test="sbrCourseId != null  ">sbr_course_id,</if>
+			<if test="sbrTime != null  ">sbr_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sbrStuId != null  and sbrStuId != ''  ">#{sbrStuId},</if>
+			<if test="sbrCourseId != null  ">#{sbrCourseId},</if>
+			<if test="sbrTime != null  ">#{sbrTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateStuBookRecord" parameterType="StuBookRecord">
+        update sys_stu_book_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="sbrStuId != null  and sbrStuId != ''  ">sbr_stu_id = #{sbrStuId},</if>
+            <if test="sbrCourseId != null  ">sbr_course_id = #{sbrCourseId},</if>
+            <if test="sbrTime != null  ">sbr_time = #{sbrTime},</if>
+        </trim>
+        where sbr_id = #{sbrId}
+    </update>
+
+	<delete id="deleteStuBookRecordById" parameterType="Integer">
+        delete from sys_stu_book_record where sbr_id = #{sbrId}
+    </delete>
+	
+    <delete id="deleteStuBookRecordByIds" parameterType="String">
+        delete from sys_stu_book_record where sbr_id in 
+        <foreach item="sbrId" collection="array" open="(" separator="," close=")">
+            #{sbrId}
+        </foreach>
+    </delete>
+    
+</mapper>

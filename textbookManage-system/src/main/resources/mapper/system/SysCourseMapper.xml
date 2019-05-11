@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.SysCourseMapper">
+
+    <resultMap type="SysCourse" id="SysCourseResult">
+        <id     property="courseId"      column="course_id"      />
+        <result property="courseName"    column="course_name"    />
+        <result property="courseTextbook"     column="course_textbook"     />
+        <result property="textbookPrice"   column="textbook_price"   />
+        <result property="courseType"    column="course_type"    />
+        <result property="courseUse"      column="course_use"      />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"      column="update_time"      />
+        <result property="updateTcId"    column="update_tc_id"    />
+        <result property="isDeleted"      column="is_deleted"      />
+    </resultMap>
+
+    <sql id="selectCourseVo">
+        select course_id, course_name, course_textbook, textbook_price, course_type, course_use, create_time, update_time, update_tc_id, is_deleted
+		from sys_course
+    </sql>
+
+    <!-- 查询条件 课程还在开设中 -->
+    <sql id="sqlwhereUse">
+        <where>
+            <if test="configId !=null">
+                and course_use = #{courseUse}
+            </if>
+        </where>
+    </sql>
+    <!-- 未删除的 -->
+    <sql id="courseNotDel">
+        <where>
+            and is_deleted = false
+        </where>
+    </sql>
+
+    <select id="selectCourses" resultMap="SysCourseResult">
+        <include refid="selectCourseVo"/>
+        <include refid="courseNotDel" />
+    </select>
+
+    <select id="selectUseCourses" resultMap="SysCourseResult">
+        <include refid="selectCourseVo"/>
+        <include refid="sqlwhereUse"/>
+        <include refid="courseNotDel" />
+    </select>
+
+    <select id="selectCourseById" parameterType="java.lang.Integer" resultMap="SysCourseResult">
+        <include refid="selectCourseVo"/>
+        <where>
+            <if test="courseId != null ">
+                AND course_id = #{courseId, jdbcType=INTEGER}
+            </if>
+        </where>
+        <include refid="courseNotDel" />
+    </select>
+
+    <update id="updateTextbookByCourseId" parameterType="com.numberone.system.domain.SysCourse">
+        update sys_course
+        <set>
+            <if test="courseName != null and courseName != ''">course_name = #{courseName},</if>
+            <if test="courseTextbook != null and courseTextbook != ''">course_textbook = #{courseTextbook},</if>
+            <if test="textbookPrice != null">textbook_price = #{textbookPrice},</if>
+            <if test="courseType != null">course_type = #{courseType},</if>
+            <if test="courseUse != null and courseUse != ''">course_use = #{courseUse},</if>
+            <if test="updateTcId != null and updateTcId != 0">update_tc_id = #{updateTcId},</if>
+            update_time = sysdate()
+        </set>
+        where course_id = #{courseId}
+    </update>
+
+    <update id="deleteByCourseIdSoft" parameterType="java.lang.Integer">
+        update sys_course
+        <set>
+            is_deleted = true
+        </set>
+        where course_id = #{courseId}
+    </update>
+
+    <insert id="insertCourse" parameterType="com.numberone.system.domain.SysCourse">
+        insert into sys_course (
+        <if test="courseName != null and courseName != '' ">course_name,</if>
+        <if test="courseTextbook != null and courseTextbook != '' ">course_textbook,</if>
+        <if test="textbookPrice != null and textbookPrice != '' ">textbook_price,</if>
+        <if test="courseType != null and courseType != '' ">course_type,</if>
+        course_use,
+        create_time
+        )values(
+        <if test="courseName != null and configName != ''">#{configName},</if>
+        <if test="courseTextbook != null and courseTextbook != ''">#{courseTextbook},</if>
+        <if test="textbookPrice != null">#{textbookPrice},</if>
+        <if test="courseType != null">#{courseType},</if>
+        true,
+        sysdate()
+        )
+    </insert>
+
+<!--    <delete id="deleteCourseByIds" parameterType="java.lang.Integer">-->
+<!--        update sys_course set isDeleted = true where course_id in-->
+<!--        <foreach collection="array" item="courseId" open="(" separator="," close=")">-->
+<!--            #{courseId}-->
+<!--        </foreach>-->
+<!--    </delete>-->
+
+</mapper>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="role-form">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            角色名称：<input type="text" name="roleName"/>
+                        </li>
+                        <li>
+                            权限字符：<input type="text" name="roleKey"/>
+                        </li>
+                        <li>
+                            角色状态：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+                            <option value="">所有</option>
+                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+                        </select>
+                        </li>
+                        <li class="select-time">
+                            <label>创建时间： </label>
+                            <input type="text" class="time-input" id="startTime" placeholder="开始时间" name="params[beginTime]"/>
+                            <span>-</span>
+                            <input type="text" class="time-input" id="endTime" placeholder="结束时间" name="params[endTime]"/>
+                        </li>
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="course:index:add">
+                <i class="fa fa-plus"></i> 新增
+            </a>
+            <a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="course:index:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="course:index:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('course:index:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('course:index:remove')}]];
+    var types = [[${@dict.getType('sys_course_type')}]];
+    // var uses = [[${@dict.getType('sys_course_use')}]];
+    var prefix = ctx + "course/index";
+
+    $(function() {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            modalName: "课程",
+            search: false,
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field : 'courseId',
+                    title : '课程号'
+                },
+                {
+                    field : 'courseName',
+                    title : '课程名称'
+                },
+                {
+                    field : 'courseTextbook',
+                    title : '课程使用教材'
+                },
+                {
+                    field : 'textbookPrice',
+                    title : '教材价格(元)'
+                },
+                {
+                    field: 'courseType',
+                    title: '课程类型',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(types, value);
+                    }
+                },
+                // {
+                //     field: 'courseUse',
+                //     title: '是否开设',
+                //     align: 'center',
+                //     formatter: function(value, row, index) {
+                //         return $.table.selectDictLabel(uses, value);
+                //     }
+                // },
+                {
+                    visible: editFlag == 'hidden' ? false : true,
+                    title: '是否开设',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return useTools(row);
+                    }
+                },
+                {
+                    field: 'createTime',
+                    title: '创建时间',
+                    sortable: true
+                },
+                {
+                    field: 'updateTime',
+                    title: '更新时间',
+                    sortable: true
+                },
+                {
+                    field : 'updateTcId',
+                    title : '更新流水号'
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        var actions = [];
+                        actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.editFull(\'' + row.courseId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.courseId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                        return actions.join('');
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+
+    /* 课程状态显示 */
+    function useTools(row) {
+        if (row.courseUse == false) {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.courseId + '\')"></i> ';
+        } else {
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.courseId + '\')"></i> ';
+        }
+    }
+
+    /* 课程关闭 */
+    function disable(courseId) {
+        $.modal.confirm("确认要停用角色吗？", function() {
+            $.operate.post(prefix + "/changeCourseUse", { "courseId": courseId, "courseUse": false });
+        })
+    }
+
+    /* 课程开设 */
+    function enable(courseId) {
+        $.modal.confirm("确认要启用角色吗？", function() {
+            $.operate.post(prefix + "/changeCourseId", { "courseId": courseId, "courseUse": true });
+        })
+    }
+</script>
+</body>
+</html>

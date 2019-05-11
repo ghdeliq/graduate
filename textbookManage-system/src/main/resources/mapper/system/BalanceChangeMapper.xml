@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.BalanceChangeMapper">
+    
+    <resultMap type="BalanceChange" id="BalanceChangeResult">
+        <result property="createTime"    column="create_time"    />
+        <result property="bcId"    column="bc_id"    />
+        <result property="stuId"    column="stu_id"    />
+        <result property="courseId"    column="course_id"    />
+        <result property="changeType"    column="change_type"    />
+        <result property="newBalance"    column="new_balance"    />
+    </resultMap>
+	
+	<sql id="selectBalanceChangeVo">
+        select create_time, bc_id, stu_id, course_id, change_type, new_balance from sys_balance_change
+    </sql>
+	
+    <select id="selectBalanceChangeList" parameterType="BalanceChange" resultMap="BalanceChangeResult">
+        <include refid="selectBalanceChangeVo"/>
+        <where>  
+            <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="bcId != null "> and bc_id = #{bcId}</if>
+             <if test="stuId != null  and stuId != '' "> and stu_id = #{stuId}</if>
+             <if test="courseId != null "> and course_id = #{courseId}</if>
+             <if test="changeType != null "> and change_type = #{changeType}</if>
+             <if test="newBalance != null "> and new_balance = #{newBalance}</if>
+         </where>
+    </select>
+    
+    <select id="selectBalanceChangeById" parameterType="Date" resultMap="BalanceChangeResult">
+        <include refid="selectBalanceChangeVo"/>
+        where create_time = #{createTime}
+    </select>
+        
+    <insert id="insertBalanceChange" parameterType="BalanceChange">
+        insert into sys_balance_change
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="createTime != null  ">create_time,</if>
+			<if test="bcId != null  ">bc_id,</if>
+			<if test="stuId != null  and stuId != ''  ">stu_id,</if>
+			<if test="courseId != null  ">course_id,</if>
+			<if test="changeType != null  ">change_type,</if>
+			<if test="newBalance != null  ">new_balance,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="bcId != null  ">#{bcId},</if>
+			<if test="stuId != null  and stuId != ''  ">#{stuId},</if>
+			<if test="courseId != null  ">#{courseId},</if>
+			<if test="changeType != null  ">#{changeType},</if>
+			<if test="newBalance != null  ">#{newBalance},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateBalanceChange" parameterType="BalanceChange">
+        update sys_balance_change
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bcId != null  ">bc_id = #{bcId},</if>
+            <if test="stuId != null  and stuId != ''  ">stu_id = #{stuId},</if>
+            <if test="courseId != null  ">course_id = #{courseId},</if>
+            <if test="changeType != null  ">change_type = #{changeType},</if>
+            <if test="newBalance != null  ">new_balance = #{newBalance},</if>
+        </trim>
+        where create_time = #{createTime}
+    </update>
+
+	<delete id="deleteBalanceChangeById" parameterType="Date">
+        delete from sys_balance_change where create_time = #{createTime}
+    </delete>
+	
+    <delete id="deleteBalanceChangeByIds" parameterType="String">
+        delete from sys_balance_change where create_time in 
+        <foreach item="createTime" collection="array" open="(" separator="," close=")">
+            #{createTime}
+        </foreach>
+    </delete>
+    
+</mapper>
