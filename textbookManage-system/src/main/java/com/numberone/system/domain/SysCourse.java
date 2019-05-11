@@ -2,6 +2,10 @@ package com.numberone.system.domain;
 
 import com.numberone.common.annotation.Excel;
 import com.numberone.common.base.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.sql.Timestamp;
 
 public class SysCourse extends BaseEntity {
 
@@ -25,8 +29,34 @@ public class SysCourse extends BaseEntity {
     @Excel(name = "是否开设")
     private Boolean courseUse;
 
+    @Excel(name = "创建时间")
+    private Timestamp createTime;
+
+    @Excel(name = "更新时间")
+    private Timestamp updateTime;
+
+    @Excel(name = "更新流水号")
+    private int updateTcId;
+
     @Excel(name = "删除标志")
     private Boolean isDeleted;
+
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public int getUpdateTcId() {
+        return updateTcId;
+    }
+
+    public void setUpdateTcId(int updateTcId) {
+        this.updateTcId = updateTcId;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -88,16 +118,32 @@ public class SysCourse extends BaseEntity {
         isDeleted = deleted;
     }
 
+    public void setTextbookPrice(Double textbookPrice) {
+        this.textbookPrice = textbookPrice;
+    }
+
+    @Override
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
-        return "SysCourse{" +
-                "courseId=" + courseId +
-                ", courseName='" + courseName + '\'' +
-                ", courseTextbook='" + courseTextbook + '\'' +
-                ", textbookPrice=" + textbookPrice +
-                ", courseType=" + courseType +
-                ", courseUse=" + courseUse +
-                ", isDeleted=" + isDeleted +
-                '}';
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("courseId=", getCourseId())
+                .append("courseName=" , getCourseName())
+                .append("courseTextbook=" , getCourseTextbook())
+                .append("textbookPrice=" , getTextbookPrice())
+                .append("courseType=" , getCourseUse())
+                .append("courseUse=" , getCourseUse())
+                .append("createTime=" , getCreateTime())
+                .append("updateTcId=", getUpdateTcId())
+                .append("updateTime=", getUpdateTime())
+                .toString();
+
     }
 }

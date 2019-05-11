@@ -64,10 +64,10 @@ function validateRule() {
         },
         messages: {
             username: {
-                required: icon + "请输入您的用户名",
+                required: "请输入您的用户名",
             },
             password: {
-                required: icon + "请输入您的密码",
+                required: "请输入您的密码",
             }
         }
     });

@@ -17,6 +17,13 @@ public interface SysCourseMapper {
     public List<SysCourse> selectCourses();
 
     /**
+     * 查询在开设中的所有课程
+     * @param
+     * @return List<SysCourse>
+     */
+    public List<SysCourse> selectUseCourses();
+
+    /**
      * 根据课程编号获取课详细信息
      * @param courseId
      * @return SysCourse
@@ -35,12 +42,20 @@ public interface SysCourseMapper {
      * @param courseId
      * @return int
      */
-    public int deleteByCourseId(Integer courseId);
+    public int deleteByCourseIdSoft(Integer courseId);
 
     /**
      * 增加课程
      * @param course
      *
      */
-    public int insert(SysCourse course);
+    public int insertCourse(SysCourse course);
+
+    /**
+     * 批量课程信息
+     *
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+//    public int deleteCourseByIds(Integer[] ids);
 }

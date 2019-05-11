@@ -30,6 +30,8 @@ public class SysLoginController extends BaseController
     public String login(HttpServletRequest request, HttpServletResponse response)
     {
         log.info("触发login【GET】");
+        log.info("[get]登录信息为：request", request);
+        log.info("[get]登录信息为：response", response);
         // 如果是Ajax请求，返回Json字符串。
         if (ServletUtils.isAjaxRequest(request))
         {
