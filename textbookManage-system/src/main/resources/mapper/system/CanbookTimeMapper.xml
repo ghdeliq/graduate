@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.numberone.system.mapper.CanbookTimeMapper">
+    
+    <resultMap type="CanbookTime" id="CanbookTimeResult">
+        <result property="canId"    column="can_id"    />
+        <result property="canStart"    column="can_start"    />
+        <result property="canEnd"    column="can_end"    />
+        <result property="canUse"    column="can_use"    />
+        <result property="canUpdateTime"    column="can_update_time"    />
+        <result property="canUpdateBy"    column="can_update_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="canType"    column="can_type"    />
+    </resultMap>
+	
+	<sql id="selectCanbookTimeVo">
+        select can_id, can_start, can_end, can_use, can_update_time, can_update_by, create_time, create_by, can_type from sys_canbook_time
+    </sql>
+
+    <select id="selectCanbookTimeList" parameterType="CanbookTime" resultMap="CanbookTimeResult">
+        <include refid="selectCanbookTimeVo"/>
+        <where>  
+            <if test="canId != null "> and can_id = #{canId}</if>
+             <if test="canStart != null "> and can_start = #{canStart}</if>
+             <if test="canEnd != null "> and can_end = #{canEnd}</if>
+             <if test="canUse != null  and canUse != '' "> and can_use = #{canUse}</if>
+             <if test="canUpdateTime != null "> and can_update_time = #{canUpdateTime}</if>
+             <if test="canUpdateBy != null  and canUpdateBy != '' "> and can_update_by = #{canUpdateBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="canType != null "> and can_type = #{canType}</if>
+         </where>
+    </select>
+
+    <select id="selectCanbookTimeCanUse" parameterType="Integer" resultMap="CanbookTimeResult">
+        <include refid="selectCanbookTimeVo"/>
+        where can_type = #{canType}
+            and can_use='yes'
+        order by create_time
+    </select>
+
+    <select id="selectCanbookTimeById" parameterType="Integer" resultMap="CanbookTimeResult">
+        <include refid="selectCanbookTimeVo"/>
+        where can_id = #{canId}
+    </select>
+        
+    <insert id="insertCanbookTime" parameterType="CanbookTime" useGeneratedKeys="true" keyProperty="canId">
+        insert into sys_canbook_time
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="canStart != null  ">can_start,</if>
+			<if test="canEnd != null  ">can_end,</if>
+			<if test="canUse != null  and canUse != ''  ">can_use,</if>
+			<if test="canUpdateTime != null  ">can_update_time,</if>
+			<if test="canUpdateBy != null  and canUpdateBy != ''  ">can_update_by,</if>
+			create_time,
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="canType != null  ">can_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="canStart != null  ">#{canStart},</if>
+			<if test="canEnd != null  ">#{canEnd},</if>
+			<if test="canUse != null  and canUse != ''  ">#{canUse},</if>
+			<if test="canUpdateTime != null  ">#{canUpdateTime},</if>
+			<if test="canUpdateBy != null  and canUpdateBy != ''  ">#{canUpdateBy},</if>
+			sysdate(),
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="canType != null  ">#{canType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCanbookTimeMakeNo" parameterType="CanbookTime">
+        update sys_canbook_time
+        <trim prefix="SET" suffixOverrides=",">
+            can_use = 'no',
+            can_update_time = sysdate(),
+            <if test="canUpdateBy != null  and canUpdateBy != ''  ">can_update_by = #{canUpdateBy},</if>
+        </trim>
+        where can_type = #{canType}
+    </update>
+	 
+    <update id="updateCanbookTime" parameterType="CanbookTime">
+        update sys_canbook_time
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="canStart != null  ">can_start = #{canStart},</if>
+            <if test="canEnd != null  ">can_end = #{canEnd},</if>
+            <if test="canUse != null  and canUse != ''  ">can_use = #{canUse},</if>
+            can_update_time = sysdate(),
+            <if test="canUpdateBy != null  and canUpdateBy != ''  ">can_update_by = #{canUpdateBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="canType != null  ">can_type = #{canType},</if>
+        </trim>
+        where can_id = #{canId}
+    </update>
+
+	<delete id="deleteCanbookTimeById" parameterType="Integer">
+        delete from sys_canbook_time where can_id = #{canId}
+    </delete>
+	
+    <delete id="deleteCanbookTimeByIds" parameterType="String">
+        delete from sys_canbook_time where can_id in 
+        <foreach item="canId" collection="array" open="(" separator="," close=")">
+            #{canId}
+        </foreach>
+    </delete>
+    
+</mapper>

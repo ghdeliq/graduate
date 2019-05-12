@@ -1,5 +1,7 @@
 package com.numberone.quartz.task;
 
+import com.numberone.system.service.HelloTestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Component;
 @Component("ryTask")
 public class RyTask
 {
+    @Autowired
+    private HelloTestService helloTestService;
     public void ryParams(String params)
     {
         System.out.println("执行有参方法：" + params);
@@ -18,5 +22,9 @@ public class RyTask
     public void ryNoParams()
     {
         System.out.println("执行无参方法");
+    }
+
+    public void test(int asd) {
+        helloTestService.test(asd);
     }
 }

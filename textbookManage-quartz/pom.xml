@@ -35,7 +35,14 @@
             <artifactId>textbookManage-common</artifactId>
             <version>${numberone.version}</version>
         </dependency>
-		
+        <dependency>
+            <groupId>com.numberone</groupId>
+            <artifactId>textbookManage-system</artifactId>
+            <version>1.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
     </dependencies>
 	
 </project>

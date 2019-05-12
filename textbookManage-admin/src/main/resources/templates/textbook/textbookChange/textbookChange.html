@@ -15,35 +15,26 @@
 							</li>
 
 							<li>
-								旧教材：<input type="text" name="tcOldTextbook"/>
-							</li>
-
-							<li>
-								要更换的新教材：<input type="text" name="tcNewTextbook"/>
-							</li>
-
-							<li>
-								新教材的价格：<input type="text" name="tcNewPrice"/>
-							</li>
-
-							<li>
 								申请人(教师工号）：<input type="text" name="tcChangeBy"/>
 							</li>
 
-							<li>
-								申请时间：<input type="text" name="tcUpTime"/>
-							</li>
+<!--							<li>-->
+<!--								申请时间：<input type="text" name="tcUpTime"/>-->
+<!--							</li>-->
 
 							<li>
 								审核人(管理员ID）：<input type="text" name="tcCheckBy"/>
 							</li>
 
-							<li>
-								审核时间：<input type="text" name="tcCheckTime"/>
-							</li>
+<!--							<li>-->
+<!--								审核时间：<input type="text" name="tcCheckTime"/>-->
+<!--							</li>-->
 
 							<li>
-								当前审核状态(0：提交，待审核;1：通过;2：驳回)：<input type="text" name="tcState"/>
+								当前审核状态：<select name="tcState" th:with="type=${@dict.getType('sys_textbook_status')}">
+								<option value="">所有</option>
+								<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+							</select>
 							</li>
 
 							<li>
@@ -78,6 +69,7 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:textbookChange:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:textbookChange:remove')}]];
+		var status = [[${@dict.getType('sys_textbook_status')}]];
         var prefix = ctx + "textbook/textbookChange";
 
         $(function() {
@@ -140,8 +132,12 @@
 				},
 				{
 					field : 'tcState', 
-					title : '当前审核状态(0：提交，待审核;1：通过;2：驳回)',
-					sortable: true
+					title : '当前审核状态',
+					align : center,
+					sortable: true,
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(status, value);
+					}
 				},
 		        {
 		            title: '操作',
