@@ -68,6 +68,11 @@ public class ShiroUtils
         return getSysUser().getUserId().longValue();
     }
 
+    public static Long getUserDeptId()
+    {
+        return getSysUser().getDeptId().longValue();
+    }
+
     public static String getLoginName()
     {
         return getSysUser().getLoginName();

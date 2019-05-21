@@ -16,6 +16,12 @@ public interface ISysCourseService {
     public List<SysCourse> selectCourses();
 
     /**
+     * 根据dept_id查询课程列表
+     * （未删除的）
+     */
+    public List<SysCourse> selectCoursesByDeptId(Long deptId);
+
+    /**
      * 查询所有在开设课程
      */
     public List<SysCourse> selectUseCourses();

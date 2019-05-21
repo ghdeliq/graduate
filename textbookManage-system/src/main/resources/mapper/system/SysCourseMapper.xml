@@ -48,14 +48,11 @@
         <include refid="courseNotDel" />
     </select>
 
-    <select id="selectCourseById" parameterType="java.lang.Integer" resultMap="SysCourseResult">
+
+    <select id="selectCourseById" parameterType="Integer" resultMap="SysCourseResult">
         <include refid="selectCourseVo"/>
-        <where>
-            <if test="courseId != null ">
-                AND course_id = #{courseId, jdbcType=INTEGER}
-            </if>
-        </where>
-        <include refid="courseNotDel" />
+              where  course_id = #{courseId}
+
     </select>
 
     <update id="updateTextbookByCourseId" parameterType="com.numberone.system.domain.SysCourse">

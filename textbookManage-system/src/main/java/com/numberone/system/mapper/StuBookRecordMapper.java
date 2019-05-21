@@ -1,7 +1,9 @@
 package com.numberone.system.mapper;
 
 import com.numberone.system.domain.StuBookRecord;
-import java.util.List;	
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 学生预定教材记录 数据层
@@ -9,6 +11,7 @@ import java.util.List;
  * @author guohui
  * @date 2019-05-11
  */
+@Component
 public interface StuBookRecordMapper 
 {
 	/**
@@ -18,7 +21,15 @@ public interface StuBookRecordMapper
      * @return 学生预定教材记录信息
      */
 	public StuBookRecord selectStuBookRecordById(Integer sbrId);
-	
+
+	/**
+	 * 查询学生预定教材记录信息
+	 *
+	 * @param sbrStuId 学生预定教材记录ID
+	 * @return 学生预定教材记录信息
+	 */
+	public List<StuBookRecord> selectStuBookRecordByStuId(String sbrStuId);
+
 	/**
      * 查询学生预定教材记录列表
      * 

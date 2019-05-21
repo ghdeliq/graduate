@@ -1,7 +1,9 @@
 package com.numberone.system.mapper;
 
 import com.numberone.system.domain.CourseClass;
-import java.util.List;	
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * 课程-班级对应 数据层
@@ -9,6 +11,7 @@ import java.util.List;
  * @author guohui
  * @date 2019-05-11
  */
+@Component
 public interface CourseClassMapper 
 {
 	/**

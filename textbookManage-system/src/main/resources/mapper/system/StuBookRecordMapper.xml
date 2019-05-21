@@ -29,18 +29,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectStuBookRecordVo"/>
         where sbr_id = #{sbrId}
     </select>
+
+    <select id="selectStuBookRecordByStuId" parameterType="String" resultMap="StuBookRecordResult">
+        <include refid="selectStuBookRecordVo"/>
+        where sbr_stu_id = #{sbrStuId}
+    </select>
         
     <insert id="insertStuBookRecord" parameterType="StuBookRecord" useGeneratedKeys="true" keyProperty="sbrId">
         insert into sys_stu_book_record
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="sbrStuId != null  and sbrStuId != ''  ">sbr_stu_id,</if>
 			<if test="sbrCourseId != null  ">sbr_course_id,</if>
-			<if test="sbrTime != null  ">sbr_time,</if>
+			sbr_time
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="sbrStuId != null  and sbrStuId != ''  ">#{sbrStuId},</if>
 			<if test="sbrCourseId != null  ">#{sbrCourseId},</if>
-			<if test="sbrTime != null  ">#{sbrTime},</if>
+			sysdate()
          </trim>
     </insert>
 	 

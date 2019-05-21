@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <insert id="insertBalanceChange" parameterType="BalanceChange">
         insert into sys_balance_change
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="createTime != null  ">create_time,</if>
+			create_time,
 			<if test="bcId != null  ">bc_id,</if>
 			<if test="stuId != null  and stuId != ''  ">stu_id,</if>
 			<if test="courseId != null  ">course_id,</if>
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="newBalance != null  ">new_balance,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="createTime != null  ">#{createTime},</if>
+			sysdate()
 			<if test="bcId != null  ">#{bcId},</if>
 			<if test="stuId != null  and stuId != ''  ">#{stuId},</if>
 			<if test="courseId != null  ">#{courseId},</if>

@@ -93,18 +93,18 @@ public class CanbookTimeController extends BaseController
 	public AjaxResult addSave(CanbookTime canbookTime)
 	{
 		log.info("新增时间控制数据项开始：");
-		CanbookTime c = canbookTimeService.isAllowedOprea(0);
-		log.info(Integer.toString( c.getCanId()));
-		log.info(ShiroUtils.getLoginName());
-		System.out.println("System  ，"+ c.getCanId());
-		if (true) { //!c.getCanId().equals(null)
-			Date date = new Date();
-			boolean allow = canbookTimeService.belongCalendar(date, c.getCanStart(), c.getCanEnd());
-			log.info("有 canType = 0");
-			if (allow) {
-				log.info("判断出了在有效时间内");
-			}
-		}
+//		CanbookTime c = canbookTimeService.isAllowedOprea(0);
+//		log.info(Integer.toString( c.getCanId()));
+//		log.info(ShiroUtils.getLoginName());
+//		System.out.println("System  ，"+ c.getCanId());
+//		if (true) { //!c.getCanId().equals(null)
+//			Date date = new Date();
+//			boolean allow = canbookTimeService.belongCalendar(date, c.getCanStart(), c.getCanEnd());
+//			log.info("有 canType = 0");
+//			if (allow) {
+//				log.info("判断出了在有效时间内");
+//			}
+//		}
 		log.info("canType: ", canbookTime.getCanType());
 		canbookTime.setCreateBy(ShiroUtils.getLoginName());
 		log.info("canbookTime  ", canbookTime.toString());

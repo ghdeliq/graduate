@@ -31,7 +31,18 @@ public class StuBookRecordServiceImpl implements IStuBookRecordService
 	{
 	    return stuBookRecordMapper.selectStuBookRecordById(sbrId);
 	}
-	
+
+	/**
+	 * 查询学生预定教材记录信息
+	 *
+	 * @param sbrStuId 学生预定教材记录ID
+	 * @return int
+	 */
+	@Override
+	public List<StuBookRecord> selectStuBookRecordByStuId(String sbrStuId) {
+		return stuBookRecordMapper.selectStuBookRecordByStuId(sbrStuId);
+	}
+
 	/**
      * 查询学生预定教材记录列表
      * 
@@ -79,5 +90,15 @@ public class StuBookRecordServiceImpl implements IStuBookRecordService
 	{
 		return stuBookRecordMapper.deleteStuBookRecordByIds(Convert.toStrArray(ids));
 	}
-	
+
+	/**
+	 * 单条删除学生预定教材记录信息
+	 *
+	 * @param id 需要删除的数据ID
+	 * @return 结果
+	 */
+	@Override
+	public int deleteStuBookRecordById(Integer id) {
+		return stuBookRecordMapper.deleteStuBookRecordById(id);
+	}
 }

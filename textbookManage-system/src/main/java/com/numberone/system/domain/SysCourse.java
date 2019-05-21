@@ -41,6 +41,15 @@ public class SysCourse extends BaseEntity {
     @Excel(name = "删除标志")
     private Boolean isDeleted;
 
+    private String stuBooked = "isnot";
+
+    public String getStuBooked() {
+        return stuBooked;
+    }
+
+    public void setStuBooked(String stuBooked) {
+        this.stuBooked = stuBooked;
+    }
 
     public Timestamp getUpdateTime() {
         return updateTime;

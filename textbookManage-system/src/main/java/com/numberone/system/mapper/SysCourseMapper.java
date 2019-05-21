@@ -1,6 +1,7 @@
 package com.numberone.system.mapper;
 
 import com.numberone.system.domain.SysCourse;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
  * 课程 数据层
  * @author guohui
  */
+@Component
 public interface SysCourseMapper {
     /**
      * 查询所有课程

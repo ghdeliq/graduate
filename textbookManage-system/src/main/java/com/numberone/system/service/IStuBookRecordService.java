@@ -18,7 +18,15 @@ public interface IStuBookRecordService
      * @return 学生预定教材记录信息
      */
 	public StuBookRecord selectStuBookRecordById(Integer sbrId);
-	
+
+	/**
+	 * 查询学生预定教材记录信息
+	 *
+	 * @param sbrStuId 学生预定教材记录ID
+	 * @return 学生预定教材记录信息
+	 */
+	public List<StuBookRecord> selectStuBookRecordByStuId(String sbrStuId);
+
 	/**
      * 查询学生预定教材记录列表
      * 
@@ -50,5 +58,12 @@ public interface IStuBookRecordService
      * @return 结果
      */
 	public int deleteStuBookRecordByIds(String ids);
-	
+
+	/**
+	 * 单条删除学生预定教材记录信息
+	 *
+	 * @param id 需要删除的数据ID
+	 * @return 结果
+	 */
+	public int deleteStuBookRecordById(Integer id);
 }

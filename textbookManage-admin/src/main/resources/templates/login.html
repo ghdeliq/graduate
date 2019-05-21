@@ -54,13 +54,6 @@
                         <label class="radio-box"><input type="radio" value="teacher" id="teacher" name="userType">教师</label>
                         <label class="radio-box"><input type="radio" value="admin" id="admin" name="userType">管理员</label>
                     </div>
-                    <div>
-                        部门状态：<select class="select-list" id="status" name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
-                            <option value="admin">管理员</option>
-                            <option value="student">学生</option>
-                            <option value="teacher">教师</option>
-                        </select>
-                    </div>
 					<div class="row m-t" th:if="${captchaEnabled==true}">
 						<div class="col-xs-6">
 						    <input type="text" name="validateCode" class="form-control code" placeholder="验证码" maxlength="5" autocomplete="off">
