@@ -95,6 +95,20 @@
         )
     </insert>
 
+    <update id="updateCourse" parameterType="SysCourse">
+        update sys_course
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="courseName != null  and courseName != ''  ">course_name = #{courseName},</if>
+            <if test="courseTextbook != null  and courseTextbook != ''  ">course_textbook = #{courseTextbook},</if>
+            <if test="textbookPrice != null  ">textbook_price = #{textbookPrice},</if>
+            <if test="courseType != null  and courseType != ''  ">course_type = #{courseType},</if>
+            <if test="courseUse != null  ">course_use = #{courseUse},</if>
+            update_time = sysdate(),
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+        </trim>
+        where course_id = #{courseId}
+    </update>
+
 <!--    <delete id="deleteCourseByIds" parameterType="java.lang.Integer">-->
 <!--        update sys_course set isDeleted = true where course_id in-->
 <!--        <foreach collection="array" item="courseId" open="(" separator="," close=")">-->

@@ -1,6 +1,10 @@
 package com.numberone.web.controller.system;
 
 import java.util.List;
+
+import com.numberone.system.domain.BalanceChange;
+import com.numberone.system.domain.SysRole;
+import com.numberone.system.service.IBalanceChangeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +52,9 @@ public class SysUserController extends BaseController
 
     @Autowired
     private SysPasswordService passwordService;
+
+    @Autowired
+    private IBalanceChangeService balanceChangeService;
 
     @RequiresPermissions("system:user:view")
     @GetMapping()
@@ -123,6 +130,19 @@ public class SysUserController extends BaseController
         if (StringUtils.isNotNull(user.getUserId()) && SysUser.isAdmin(user.getUserId()))
         {
             return error("不允许修改超级管理员用户");
+        }
+        boolean isStudent = false;
+        for (Long roleId : user.getRoleIds()) { //如果是学生用户，同时创建余额变更账户，默认余额为0
+            SysRole role = roleService.selectRoleById(roleId);
+            if ("student".equals(role.getRoleKey())) {
+                isStudent = true;
+                BalanceChange balanceChange = new BalanceChange();
+                balanceChange.setChangeType(2);//变更类型为2 创建账户
+                balanceChange.setNewBalance(0.00);
+                balanceChange.setStuId(user.getLoginName());
+                balanceChange.setCreateBy(ShiroUtils.getLoginName());
+                balanceChangeService.insertBalanceChange(balanceChange);
+            }
         }
         user.setSalt(ShiroUtils.randomSalt());
         user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));

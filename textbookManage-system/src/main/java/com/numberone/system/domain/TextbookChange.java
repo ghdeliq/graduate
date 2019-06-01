@@ -21,6 +21,8 @@ public class TextbookChange extends BaseEntity
 	private Integer tcId;
 	/** 课程编号 */
 	private Integer tcCourseId;
+	/** 课程名 */
+	private String courseName;
 	/** 旧教材 */
 	private String tcOldTextbook;
 	/** 要更换的新教材 */
@@ -129,7 +131,15 @@ public class TextbookChange extends BaseEntity
 		return tcState;
 	}
 
-    public String toString() {
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("tcId", getTcId())
             .append("tcCourseId", getTcCourseId())

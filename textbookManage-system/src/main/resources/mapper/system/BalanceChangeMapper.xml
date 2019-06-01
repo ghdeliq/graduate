@@ -11,10 +11,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="courseId"    column="course_id"    />
         <result property="changeType"    column="change_type"    />
         <result property="newBalance"    column="new_balance"    />
+        <result property="createBy"    column="create_by"    />
     </resultMap>
 	
 	<sql id="selectBalanceChangeVo">
-        select create_time, bc_id, stu_id, course_id, change_type, new_balance from sys_balance_change
+        select create_time, bc_id, stu_id, course_id, change_type, new_balance, create_by from sys_balance_change
     </sql>
 	
     <select id="selectBalanceChangeList" parameterType="BalanceChange" resultMap="BalanceChangeResult">
@@ -26,7 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="courseId != null "> and course_id = #{courseId}</if>
              <if test="changeType != null "> and change_type = #{changeType}</if>
              <if test="newBalance != null "> and new_balance = #{newBalance}</if>
+            <if test="createBy != null "> and create_by = #{createBy}</if>
          </where>
+        ORDER BY create_time DESC
     </select>
     
     <select id="selectBalanceChangeById" parameterType="Date" resultMap="BalanceChangeResult">
@@ -43,14 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="courseId != null  ">course_id,</if>
 			<if test="changeType != null  ">change_type,</if>
 			<if test="newBalance != null  ">new_balance,</if>
+            <if test="createBy != null  ">create_by,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-			sysdate()
+			sysdate(),
 			<if test="bcId != null  ">#{bcId},</if>
 			<if test="stuId != null  and stuId != ''  ">#{stuId},</if>
 			<if test="courseId != null  ">#{courseId},</if>
 			<if test="changeType != null  ">#{changeType},</if>
 			<if test="newBalance != null  ">#{newBalance},</if>
+            <if test="createBy != null  ">#{createBy},</if>
          </trim>
     </insert>
 	 
@@ -62,6 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="courseId != null  ">course_id = #{courseId},</if>
             <if test="changeType != null  ">change_type = #{changeType},</if>
             <if test="newBalance != null  ">new_balance = #{newBalance},</if>
+            <if test="createBy != null  ">create_by = #{createBy},</if>
         </trim>
         where create_time = #{createTime}
     </update>
@@ -76,5 +82,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{createTime}
         </foreach>
     </delete>
+
+    <select id="selectBalanceChangesByStuId" parameterType="String" resultMap="BalanceChangeResult">
+        <include refid="selectBalanceChangeVo"/>
+        <where>
+            <if test="stuId != null  and stuId != '' "> and stu_id = #{stuId}</if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
     
 </mapper>

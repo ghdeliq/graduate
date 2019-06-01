@@ -21,7 +21,7 @@
 
 
 							<li>
-								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;创建并覆盖 </a>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;查询 </a>
 <!--								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>-->
 								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
 							</li>
@@ -53,6 +53,8 @@
     <script th:inline="javascript">
         var editFlag = [[${@permission.hasPermi('system:canbookTime:edit')}]];
         var removeFlag = [[${@permission.hasPermi('system:canbookTime:remove')}]];
+		var types = [[${@dict.getType('sys_canbook_type')}]];
+		var uses = [[${@dict.getType('sys_canbook_use')}]];
         var prefix = ctx + "system/canbookTime";
 
         $(function() {
@@ -75,8 +77,12 @@
 				},
 				{
 					field : 'canType',
-					title : '类型',
-					sortable: true
+					title : '时间控制类型',
+					align : 'center',
+					sortable: true,
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(types, value);
+					}
 				},
 				{
 					field : 'canStart', 
@@ -91,7 +97,11 @@
 				{
 					field : 'canUse', 
 					title : '是否使用',
-					sortable: true
+					align : 'center',
+					sortable: true,
+					formatter: function(value, row, index) {
+						return $.table.selectDictLabel(uses, value);
+					}
 				},
 				{
 					field : 'createBy',

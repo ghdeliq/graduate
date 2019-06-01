@@ -53,6 +53,12 @@ public interface ISysCourseService {
     public SysCourse getCourseById(Integer courseId);
 
     /**
+     * 更新课程信息
+     * @param course
+     */
+    public int updateCourse(SysCourse course);
+
+    /**
      * 批量删除角色用户信息
      *
      * @param ids 需要删除的数据ID

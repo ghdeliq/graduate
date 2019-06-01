@@ -50,10 +50,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="tcNewTextbook != null  and tcNewTextbook != ''  ">tc_new_textbook,</if>
 			<if test="tcNewPrice != null  ">tc_new_price,</if>
 			<if test="tcChangeBy != null  and tcChangeBy != ''  ">tc_change_by,</if>
-			<if test="tcUpTime != null  ">tc_up_time,</if>
+			tc_up_time,
 			<if test="tcCheckBy != null  and tcCheckBy != ''  ">tc_check_by,</if>
 			<if test="tcCheckTime != null  ">tc_check_time,</if>
-			<if test="tcState != null  ">tc_state,</if>
+			tc_state
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="tcCourseId != null  ">#{tcCourseId},</if>
@@ -61,10 +61,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="tcNewTextbook != null  and tcNewTextbook != ''  ">#{tcNewTextbook},</if>
 			<if test="tcNewPrice != null  ">#{tcNewPrice},</if>
 			<if test="tcChangeBy != null  and tcChangeBy != ''  ">#{tcChangeBy},</if>
-			<if test="tcUpTime != null  ">#{tcUpTime},</if>
+			sysdate(),
 			<if test="tcCheckBy != null  and tcCheckBy != ''  ">#{tcCheckBy},</if>
 			<if test="tcCheckTime != null  ">#{tcCheckTime},</if>
-			<if test="tcState != null  ">#{tcState},</if>
+			0
          </trim>
     </insert>
 	 
@@ -78,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="tcChangeBy != null  and tcChangeBy != ''  ">tc_change_by = #{tcChangeBy},</if>
             <if test="tcUpTime != null  ">tc_up_time = #{tcUpTime},</if>
             <if test="tcCheckBy != null  and tcCheckBy != ''  ">tc_check_by = #{tcCheckBy},</if>
-            <if test="tcCheckTime != null  ">tc_check_time = #{tcCheckTime},</if>
+            tc_check_time = sysdate(),
             <if test="tcState != null  ">tc_state = #{tcState},</if>
         </trim>
         where tc_id = #{tcId}

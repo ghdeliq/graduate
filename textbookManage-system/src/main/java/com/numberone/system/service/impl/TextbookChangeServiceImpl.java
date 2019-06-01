@@ -1,6 +1,9 @@
 package com.numberone.system.service.impl;
 
 import java.util.List;
+
+import com.numberone.system.domain.SysCourse;
+import com.numberone.system.mapper.SysCourseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.numberone.system.mapper.TextbookChangeMapper;
@@ -19,6 +22,9 @@ public class TextbookChangeServiceImpl implements ITextbookChangeService
 {
 	@Autowired
 	private TextbookChangeMapper textbookChangeMapper;
+
+	@Autowired
+	private SysCourseMapper courseMapper;
 
 	/**
      * 查询教材变更记录信息
@@ -41,7 +47,12 @@ public class TextbookChangeServiceImpl implements ITextbookChangeService
 	@Override
 	public List<TextbookChange> selectTextbookChangeList(TextbookChange textbookChange)
 	{
-	    return textbookChangeMapper.selectTextbookChangeList(textbookChange);
+		List<TextbookChange> list =  textbookChangeMapper.selectTextbookChangeList(textbookChange);
+		for (TextbookChange t : list) { //获取courseName
+			SysCourse course = courseMapper.selectCourseById(t.getTcCourseId());
+			t.setCourseName(course.getCourseName());
+		}
+		return list;
 	}
 	
     /**

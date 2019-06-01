@@ -131,7 +131,7 @@ public class CanbookTimeController extends BaseController
 	@ResponseBody
 	public AjaxResult editSave(CanbookTime canbookTime)
 	{
-		canbookTime.setUpdateBy(ShiroUtils.getLoginName());
+		canbookTime.setCanUpdateBy(ShiroUtils.getLoginName());
 		return toAjax(canbookTimeService.updateCanbookTime(canbookTime));
 	}
 	

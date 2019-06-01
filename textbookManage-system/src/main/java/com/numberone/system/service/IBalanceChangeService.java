@@ -52,5 +52,11 @@ public interface IBalanceChangeService
      * @return 结果
      */
 	public int deleteBalanceChangeByIds(String ids);
-	
+
+	/**
+	 * 查询某学生余额变更记录
+	 * 按时间排序
+	 * @param stuId
+	 */
+	public List<BalanceChange> selectBalanceChangesByStuId(String stuId);
 }

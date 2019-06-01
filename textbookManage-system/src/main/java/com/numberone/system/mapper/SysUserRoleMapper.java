@@ -1,6 +1,8 @@
 package com.numberone.system.mapper;
 
 import java.util.List;
+
+import com.numberone.system.domain.SysRole;
 import com.numberone.system.domain.SysUserRole;
 
 /**
@@ -41,4 +43,12 @@ public interface SysUserRoleMapper
      * @return 结果
      */
     public int batchUserRole(List<SysUserRole> userRoleList);
+
+    /**
+     * 根据用户id获取角色信息
+     *
+     * @param userId
+     * @return 结果
+     */
+    public SysUserRole selectRoleIdByUserId(Long userId);
 }

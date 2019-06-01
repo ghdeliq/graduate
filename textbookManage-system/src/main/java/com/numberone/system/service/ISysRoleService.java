@@ -3,6 +3,7 @@ package com.numberone.system.service;
 import java.util.List;
 import java.util.Set;
 import com.numberone.system.domain.SysRole;
+import com.numberone.system.domain.SysUserRole;
 
 /**
  * 角色业务层
@@ -122,4 +123,12 @@ public interface ISysRoleService
      * @return 结果
      */
     public int changeStatus(SysRole role);
+
+    /**
+     * 根据用户ID获取角色ID
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    public SysUserRole selectRoleIdByUserId(Long userId);
 }

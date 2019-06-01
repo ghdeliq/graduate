@@ -95,14 +95,6 @@ public class SysCourse extends BaseEntity {
         this.courseTextbook = courseTextbook;
     }
 
-    public double getTextbookPrice() {
-        return textbookPrice;
-    }
-
-    public void setTextbookPrice(double textbookPrice) {
-        this.textbookPrice = textbookPrice;
-    }
-
     public Integer getCourseType() {
         return courseType;
     }
@@ -125,6 +117,10 @@ public class SysCourse extends BaseEntity {
 
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public Double getTextbookPrice() {
+        return textbookPrice;
     }
 
     public void setTextbookPrice(Double textbookPrice) {

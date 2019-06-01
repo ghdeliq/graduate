@@ -94,7 +94,7 @@ public class Global
      */
     public static String getCopyrightYear()
     {
-        return StringUtils.nvl(getConfig("numberone.copyrightYear"), "2018");
+        return StringUtils.nvl(getConfig("imau.毕业设计"), "2019");
     }
 
     /**

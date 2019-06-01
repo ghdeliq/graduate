@@ -29,8 +29,31 @@ public class BalanceChange extends BaseEntity
 	private Integer changeType;
 	/** 现阶段余额(允许负值) */
 	private Double newBalance;
+	/** 操作人 */
+	private String createBy;
 
-	public void setCreateTime(Date createTime) 
+	/** 管理员 操作余额变更过渡值 */
+	private Double newBalanceAdmin;
+
+	public Double getNewBalanceAdmin() {
+		return newBalanceAdmin;
+	}
+
+	public void setNewBalanceAdmin(Double newBalanceAdmin) {
+		this.newBalanceAdmin = newBalanceAdmin;
+	}
+
+	@Override
+	public String getCreateBy() {
+		return createBy;
+	}
+
+	@Override
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+
+	public void setCreateTime(Date createTime)
 	{
 		this.createTime = createTime;
 	}

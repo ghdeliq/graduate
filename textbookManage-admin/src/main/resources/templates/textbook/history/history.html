@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 search-collapse">
+            <form id="formId">
+                <div class="select-list">
+                    <ul>
+                        <li>
+                            课程编号：<input type="text" name="tcCourseId"/>
+                        </li>
+
+                        <li>
+                            <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i> 查找历史教材&nbsp;</a>
+<!--                            <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>-->
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+
+        <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:textbook:history:export">
+                <i class="fa fa-download"></i> 导出
+            </a>
+        </div>
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('system:textbookChange:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('system:textbookChange:remove')}]];
+    var prefix = ctx + "textbook/history";
+
+    $(function() {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/add",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            exportUrl: prefix + "/export",
+            modalName: "历史教材查看",
+            search: false,
+            showExport: true,
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field : 'tcId',
+                    title : '记录编号',
+                    visible: false
+                },
+                {
+                    field : 'tcCourseId',
+                    title : '课程编号',
+                    sortable: true
+                },
+                {
+                    field : 'courseName',
+                    title : '课程名',
+                    sortable: true
+                },
+                {
+                    field : 'tcNewTextbook',
+                    title : '使用过的教材',
+                    sortable: true
+                },
+                {
+                    field : 'tcNewPrice',
+                    title : '教材价格(元)',
+                    sortable: true
+                },
+                {
+                    field : 'tcCheckTime',
+                    title : '使用时间',
+                    sortable: true
+                }
+                // {
+                // 	title: '操作',
+                // 	align: 'center',
+                // 	formatter: function(value, row, index) {
+                // 		var actions = [];
+                // 		actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.tcId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                // 		// actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.tcId + '\')"><i class="fa fa-remove"></i>删除</a>');
+                // 		return actions.join('');
+                // 	}
+                // }
+            ]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

@@ -81,5 +81,16 @@ public class BalanceChangeServiceImpl implements IBalanceChangeService
 	{
 		return balanceChangeMapper.deleteBalanceChangeByIds(Convert.toStrArray(ids));
 	}
-	
+
+	/**
+	 * 查询某学生余额变更记录
+	 * 按时间排序
+	 *
+	 * @param stuId
+	 */
+	@Override
+	public List<BalanceChange> selectBalanceChangesByStuId(String stuId) {
+
+		return balanceChangeMapper.selectBalanceChangesByStuId(stuId);
+	}
 }

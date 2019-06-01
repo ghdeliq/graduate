@@ -2,6 +2,11 @@ package com.numberone.web.controller.textbook;
 
 import java.util.List;
 import java.util.Date;
+
+import com.numberone.framework.util.ShiroUtils;
+import com.numberone.system.domain.SysRole;
+import com.numberone.system.domain.SysUserRole;
+import com.numberone.system.service.ISysRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +39,11 @@ public class BalanceChangeController extends BaseController
 	
 	@Autowired
 	private IBalanceChangeService balanceChangeService;
+
+	@Autowired
+	private ISysRoleService roleService;
 	
-	@RequiresPermissions("system:balanceChange:view")
+//	@RequiresPermissions("system:balanceChange:view")
 	@GetMapping()
 	public String balanceChange()
 	{
@@ -45,12 +53,17 @@ public class BalanceChangeController extends BaseController
 	/**
 	 * 查询学生余额变更列表
 	 */
-	@RequiresPermissions("system:balanceChange:list")
+//	@RequiresPermissions("system:balanceChange:list")
 	@PostMapping("/list")
 	@ResponseBody
 	public TableDataInfo list(BalanceChange balanceChange)
 	{
 		startPage();
+		SysUserRole userRole = roleService.selectRoleIdByUserId(ShiroUtils.getUserId());
+		SysRole role = roleService.selectRoleById(userRole.getRoleId());
+		if (role.getRoleKey().equals("student")) {
+			balanceChange.setStuId(ShiroUtils.getLoginName());
+		}
         List<BalanceChange> list = balanceChangeService.selectBalanceChangeList(balanceChange);
 		return getDataTable(list);
 	}
@@ -59,7 +72,7 @@ public class BalanceChangeController extends BaseController
 	/**
 	 * 导出学生余额变更列表
 	 */
-	@RequiresPermissions("system:balanceChange:export")
+//	@RequiresPermissions("system:balanceChange:export")
     @PostMapping("/export")
     @ResponseBody
     public AjaxResult export(BalanceChange balanceChange)
@@ -81,7 +94,7 @@ public class BalanceChangeController extends BaseController
 	/**
 	 * 新增保存学生余额变更
 	 */
-	@RequiresPermissions("system:balanceChange:add")
+//	@RequiresPermissions("system:balanceChange:add")
 	@Log(title = "学生余额变更", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
@@ -103,20 +116,26 @@ public class BalanceChangeController extends BaseController
 	
 	/**
 	 * 修改保存学生余额变更
+	 * 名为修改，实际为新增记录
 	 */
-	@RequiresPermissions("system:balanceChange:edit")
+//	@RequiresPermissions("system:balanceChange:edit")
 	@Log(title = "学生余额变更", businessType = BusinessType.UPDATE)
 	@PostMapping("/edit")
 	@ResponseBody
 	public AjaxResult editSave(BalanceChange balanceChange)
-	{		
-		return toAjax(balanceChangeService.updateBalanceChange(balanceChange));
+	{
+		BalanceChange newBalanceChange = new BalanceChange();
+		newBalanceChange.setChangeType(3); //管理员操作
+		newBalanceChange.setNewBalance(balanceChange.getNewBalanceAdmin());
+		newBalanceChange.setStuId(balanceChange.getStuId());
+		newBalanceChange.setCreateBy(ShiroUtils.getLoginName());
+		return toAjax(balanceChangeService.insertBalanceChange(newBalanceChange));
 	}
 	
 	/**
 	 * 删除学生余额变更
 	 */
-	@RequiresPermissions("system:balanceChange:remove")
+//	@RequiresPermissions("system:balanceChange:remove")
 	@Log(title = "学生余额变更", businessType = BusinessType.DELETE)
 	@PostMapping( "/remove")
 	@ResponseBody

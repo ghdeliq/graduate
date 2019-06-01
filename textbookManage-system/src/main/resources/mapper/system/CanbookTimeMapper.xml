@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <trim prefix="SET" suffixOverrides=",">
             can_use = 'no',
             can_update_time = sysdate(),
-            <if test="canUpdateBy != null  and canUpdateBy != ''  ">can_update_by = #{canUpdateBy},</if>
+            <if test="canUpdateBy != null  and canUpdateBy != ''  ">can_update_by = #{createBy},</if>
         </trim>
         where can_type = #{canType}
     </update>

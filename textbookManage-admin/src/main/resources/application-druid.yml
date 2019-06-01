@@ -6,12 +6,12 @@ spring:
         druid:
             # 主库数据源
             master:
-#                url: jdbc:mysql://localhost:3307/numone?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
-#                username: root
-#                password: gh123
-                url: jdbc:mysql://62.234.9.150:3306/textbookManage?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                url: jdbc:mysql://localhost:3307/textbook_manager?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
                 username: root
-                password: root
+                password: gh123
+#                url: jdbc:mysql://62.234.9.150:3306/textbookManage?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+#                username: root
+#                password: root
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭

@@ -7,33 +7,39 @@
         <form class="form-horizontal m" id="form-balanceChange-edit" th:object="${balanceChange}">
             <input id="createTime" name="createTime" th:field="*{createTime}"  type="hidden">
 			<div class="form-group">	
-				<label class="col-sm-3 control-label">流水ID：</label>
-				<div class="col-sm-8">
-					<input id="bcId" name="bcId" th:field="*{bcId}" class="form-control" type="text">
-				</div>
+<!--				<label class="col-sm-3 control-label">流水ID：</label>-->
+<!--				<div class="col-sm-8">-->
+<!--					<input id="bcId" name="bcId" th:field="*{bcId}" class="form-control" type="text">-->
+<!--				</div>-->
 			</div>
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">学生学号：</label>
 				<div class="col-sm-8">
-					<input id="stuId" name="stuId" th:field="*{stuId}" class="form-control" type="text">
+					<input id="stuId" name="stuId" th:field="*{stuId}" class="form-control" type="text" readonly="readonly">
 				</div>
 			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">课程编号：</label>
-				<div class="col-sm-8">
-					<input id="courseId" name="courseId" th:field="*{courseId}" class="form-control" type="text">
-				</div>
-			</div>
-			<div class="form-group">	
-				<label class="col-sm-3 control-label">变更类型（0:订购，余额减少；1:取消，余额增加)：</label>
-				<div class="col-sm-8">
-					<input id="changeType" name="changeType" th:field="*{changeType}" class="form-control" type="text">
-				</div>
-			</div>
+<!--			<div class="form-group">	-->
+<!--				<label class="col-sm-3 control-label">课程编号：</label>-->
+<!--				<div class="col-sm-8">-->
+<!--					<input id="courseId" name="courseId" class="form-control" type="text" value=" &#45;&#45;&#45;&#45; " readonly="readonly">-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="form-group">	-->
+<!--				<label class="col-sm-3 control-label">变更类型</label>-->
+<!--				<div class="col-sm-8">-->
+<!--					<input id="changeType" name="changeType" th:field="*{changeType}" class="form-control" type="text">-->
+<!--				</div>-->
+<!--			</div>-->
 			<div class="form-group">	
 				<label class="col-sm-3 control-label">现阶段余额(允许负值)：</label>
 				<div class="col-sm-8">
-					<input id="newBalance" name="newBalance" th:field="*{newBalance}" class="form-control" type="text">
+					<input id="newBalance" name="newBalance" th:field="*{newBalance}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">余额变更为：</label>
+				<div class="col-sm-8">
+					<input id="newBalanceAdmin" name="newBalanceAdmin" class="form-control" type="text">
 				</div>
 			</div>
 		</form>

@@ -2,12 +2,18 @@ package com.numberone.web.controller.system;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.numberone.framework.util.ShiroUtils;
+import com.numberone.system.domain.SysRole;
+import com.numberone.system.domain.SysUserRole;
+import com.numberone.system.service.ISysRoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +26,16 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 登录验证
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 public class SysLoginController extends BaseController
 {
     private static final Logger log = LoggerFactory.getLogger(SysLoginController.class);
+
+    @Autowired
+    private ISysRoleService roleService;
+
     @GetMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response)
     {
@@ -54,6 +64,12 @@ public class SysLoginController extends BaseController
         try
         {
             subject.login(token);
+            SysUserRole userRole = roleService.selectRoleIdByUserId(ShiroUtils.getUserId());
+            SysRole role = roleService.selectRoleById(userRole.getRoleId());
+            if (role.getRoleKey().equals(userType)) {
+            } else {
+                return error("用户或密码错误");
+            }
             return success();
         }
         catch (AuthenticationException e)

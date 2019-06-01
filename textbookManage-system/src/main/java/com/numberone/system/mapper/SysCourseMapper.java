@@ -54,6 +54,11 @@ public interface SysCourseMapper {
     public int insertCourse(SysCourse course);
 
     /**
+     * 更新课程信息
+     * @param course
+     */
+    public int updateCourse(SysCourse course);
+    /**
      * 批量课程信息
      *
      * @param ids 需要删除的数据ID

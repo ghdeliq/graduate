@@ -58,6 +58,7 @@
 <div th:include="include :: footer"></div>
 <script th:inline="javascript">
     var editFlag = [[${@permission.hasPermi('course:index:edit')}]];
+    var listFlag = [[${@permission.hasPermi('course:history:list')}]];
     var removeFlag = [[${@permission.hasPermi('course:index:remove')}]];
     var types = [[${@dict.getType('sys_course_type')}]];
     // var uses = [[${@dict.getType('sys_course_use')}]];
@@ -124,16 +125,17 @@
                     title: '更新时间',
                     sortable: true
                 },
-                {
-                    field : 'updateTcId',
-                    title : '更新流水号'
-                },
+                // {
+                //     field : 'updateTcId',
+                //     title : '更新流水号'
+                // },
                 {
                     title: '操作',
                     align: 'center',
                     formatter: function(value, row, index) {
                         var actions = [];
                         actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.editFull(\'' + row.courseId + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-info btn-xs ' + listFlag + '" href="#" onclick="detail(\'' + row.courseId + '\')"><i class="fa fa-list-ul"></i>历史教材</a> ');
                         actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.courseId + '\')"><i class="fa fa-remove"></i>删除</a>');
                         return actions.join('');
                     }
@@ -164,6 +166,12 @@
         $.modal.confirm("确认要启用角色吗？", function() {
             $.operate.post(prefix + "/changeCourseId", { "courseId": courseId, "courseUse": true });
         })
+    }
+
+    /*历史教材-详细*/
+    function detail(courseId) {
+        var url = prefix + '/textbook/history/' + courseId;
+        createMenuItem(url, "历史教材");
     }
 </script>
 </body>

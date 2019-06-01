@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
+		<form class="form-vertical m" id="form-check">
+			<input id="tcId" name="tcId" th:field="*{textbookChange.tcId}"  type="hidden">
+
+			<div class="form-group">
+				<p align="center">
+				<div >
+					审核：
+					<div class="radio-box" >
+						<input type="radio" id="allow" name="check" value="allow" checked="true">
+						<label for="reject" >通过申请</label>
+					</div>
+					<div class="radio-box" >
+						<input type="radio" id="reject" name="check" value="reject">
+						<label for="reject" >驳回申请</label>
+					</div>
+				</div>
+				</p>
+			</div>
+		</form>
+		<HR style="FILTER: progid:DXImageTransform.Microsoft.Shadow(color:#987cb9,direction:145,strength:15)" width="80%" color=#987cb9 SIZE=1>
+			<p align="center"><span>———— 教材变更申请详情 ————</span></p>
+        <form class="form-horizontal m" id="form-textbookChange-edit" th:object="${textbookChange}">
+<!--            <input id="tcId" name="tcId" th:field="*{tcId}"  type="hidden">-->
+			<div class="form-group">
+				<label class="col-sm-3 control-label">课程编号：</label>
+				<div class="col-sm-1">
+					<input id="tcCourseId" name="tcCourseId" th:field="*{tcCourseId}" class="form-control" type="text" readonly="readonly">
+				</div>
+				<label class="col-sm-3 control-label">课程名：</label>
+				<div class="col-sm-4">
+					<input id="courseName" name="courseName" th:field="*{courseName}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+<!--			<div class="form-group">-->
+<!--				<label class="col-sm-3 control-label">课程名：</label>-->
+<!--				<div class="col-sm-8">-->
+<!--					<input id="courseName" name="courseName" th:field="*{courseName}" class="form-control" type="text" readonly="readonly">-->
+<!--				</div>-->
+<!--			</div>-->
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">旧教材：</label>
+				<div class="col-sm-8">
+					<input id="tcOldTextbook" name="tcOldTextbook" th:field="*{tcOldTextbook}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">要更换的新教材：</label>
+				<div class="col-sm-8">
+					<input id="tcNewTextbook" name="tcNewTextbook" th:field="*{tcNewTextbook}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">新教材的价格：</label>
+				<div class="col-sm-8">
+					<input id="tcNewPrice" name="tcNewPrice" th:field="*{tcNewPrice}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申请人(教师工号）：</label>
+				<div class="col-sm-8">
+					<input id="tcChangeBy" name="tcChangeBy" th:field="*{tcChangeBy}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">申请时间：</label>
+				<div class="col-sm-8">
+					<input id="tcUpTime" name="tcUpTime" th:field="*{tcUpTime}" class="form-control" type="text" readonly="readonly">
+				</div>
+			</div>
+
+		</form>
+    </div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "textbook/textbookChangeCheck";
+		$("#form-textbookChange-edit").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			}
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/check", $('#form-check').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

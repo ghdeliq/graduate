@@ -1,6 +1,11 @@
 package com.numberone.system.service.impl;
 
 import java.util.List;
+
+import com.numberone.system.domain.SysCourse;
+import com.numberone.system.domain.SysDept;
+import com.numberone.system.mapper.SysCourseMapper;
+import com.numberone.system.mapper.SysDeptMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.numberone.system.mapper.CourseClassMapper;
@@ -19,6 +24,12 @@ public class CourseClassServiceImpl implements ICourseClassService
 {
 	@Autowired
 	private CourseClassMapper courseClassMapper;
+
+	@Autowired
+	private SysCourseMapper courseMapper;
+
+	@Autowired
+	private SysDeptMapper deptMapper;
 
 	/**
      * 查询课程-班级对应信息
@@ -41,7 +52,14 @@ public class CourseClassServiceImpl implements ICourseClassService
 	@Override
 	public List<CourseClass> selectCourseClassList(CourseClass courseClass)
 	{
-	    return courseClassMapper.selectCourseClassList(courseClass);
+		List<CourseClass> list = courseClassMapper.selectCourseClassList(courseClass);
+		for (CourseClass cc : list) {
+			SysCourse course = courseMapper.selectCourseById(cc.getCourseId());
+			cc.setCourseName(course.getCourseName());
+			SysDept dept = deptMapper.selectDeptById(cc.getClassId().longValue());
+			cc.setClassName(dept.getDeptName());
+		}
+	    return list;
 	}
 	
     /**

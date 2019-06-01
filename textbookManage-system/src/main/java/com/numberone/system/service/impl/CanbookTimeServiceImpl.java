@@ -133,4 +133,19 @@ public class CanbookTimeServiceImpl implements ICanbookTimeService
 		}
 	}
 
+	/**
+	 * 判断当前时间是否可执行
+	 *
+	 * @param canType
+	 * @Param canType
+	 */
+	@Override
+	public boolean canRunNow(Integer canType) {
+		CanbookTime canbookTime = canbookTimeMapper.selectCanbookTimeCanUse(canType);
+		if(canbookTime == null) {
+			return false;
+		}
+		Date date = new Date();
+		return belongCalendar(date, canbookTime.getCanStart(), canbookTime.getCanEnd());
+	}
 }

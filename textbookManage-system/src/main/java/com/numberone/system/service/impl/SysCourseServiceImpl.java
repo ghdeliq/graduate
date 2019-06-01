@@ -115,6 +115,16 @@ public class SysCourseServiceImpl implements ISysCourseService {
     }
 
     /**
+     * 更新课程信息
+     *
+     * @param course
+     */
+    @Override
+    public int updateCourse(SysCourse course) {
+        return sysCourseMapper.updateCourse(course);
+    }
+
+    /**
      * 批量删除角色用户信息
      *
      * @param ids 需要删除的数据ID

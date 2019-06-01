@@ -24,7 +24,28 @@ public class CourseClass extends BaseEntity
 	/** 学期(2019春) */
 	private String ccSemester;
 
-	public void setCcId(Integer ccId) 
+	/** 添加 课程名**/
+	private String courseName;
+	/** 添加 班级名**/
+	private String className;
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public void setCcId(Integer ccId)
 	{
 		this.ccId = ccId;
 	}

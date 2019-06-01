@@ -73,5 +73,11 @@ public interface ICanbookTimeService
 	 */
 	public  boolean belongCalendar(Date nowTime, Date beginTime, Date endTime) ;
 
+	/**
+	 * 判断当前时间是否可执行
+	 * @Param canType
+	 */
+	public boolean canRunNow(Integer canType);
+
 	
 }

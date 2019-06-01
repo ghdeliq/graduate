@@ -15,11 +15,7 @@
 							</li>
 
 							<li>
-								班级编号(对应用户表里的dept_id)：<input type="text" name="classId"/>
-							</li>
-
-							<li>
-								学期(2019春)：<input type="text" name="ccSemester"/>
+								班级编号：<input type="text" name="classId"/>
 							</li>
 
 							<li>
@@ -80,13 +76,23 @@
 					sortable: true
 				},
 				{
+					field : 'courseName',
+					title : '课程名',
+
+				},
+				{
 					field : 'classId', 
-					title : '班级编号(对应用户表里的dept_id)',
+					title : '班级编号',
+					sortable: false
+				},
+				{
+					field : 'className',
+					title : '班级名',
 					sortable: true
 				},
 				{
 					field : 'ccSemester', 
-					title : '学期(2019春)',
+					title : '学期',
 					sortable: true
 				},
 		        {

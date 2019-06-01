@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.numberone.system.domain.SysUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.numberone.common.annotation.DataScope;
@@ -309,5 +311,17 @@ public class SysRoleServiceImpl implements ISysRoleService
     public int changeStatus(SysRole role)
     {
         return roleMapper.updateRole(role);
+    }
+
+    /**
+     * 根据用户ID获取角色ID
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    @Override
+    public SysUserRole selectRoleIdByUserId(Long userId) {
+
+        return userRoleMapper.selectRoleIdByUserId(userId);
     }
 }

@@ -60,5 +60,13 @@ public interface BalanceChangeMapper
      * @return 结果
      */
 	public int deleteBalanceChangeByIds(String[] createTimes);
+
+	/**
+	 * 查询某学生余额变更记录
+	 * 按时间排序
+	 *
+	 * @param stuId
+	 */
+	public List<BalanceChange> selectBalanceChangesByStuId(String stuId);
 	
 }

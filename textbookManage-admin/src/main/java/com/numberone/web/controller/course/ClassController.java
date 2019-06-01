@@ -7,7 +7,9 @@ import com.numberone.common.page.TableDataInfo;
 import com.numberone.framework.util.ShiroUtils;
 import com.numberone.framework.web.base.BaseController;
 import com.numberone.system.domain.SysCourse;
+import com.numberone.system.domain.TextbookChange;
 import com.numberone.system.service.ISysCourseService;
+import com.numberone.system.service.ITextbookChangeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,9 @@ public class ClassController extends BaseController {
 
     @Autowired
     private ISysCourseService sysCourseService;
+
+    @Autowired
+    private ITextbookChangeService textbookChangeService;
 
     @RequiresPermissions("course:index:view")
     @GetMapping()
@@ -94,6 +99,16 @@ public class ClassController extends BaseController {
         course.setUpdateBy(ShiroUtils.getLoginName());
         ShiroUtils.clearCachedAuthorizationInfo();
         return toAjax(sysCourseService.changeTextbook(course));
+    }
+
+    @GetMapping("/textbook/history/{courseId}")
+    public String detail(@PathVariable("courseId") Integer courseId, ModelMap mmap)
+    {
+        TextbookChange textbookChange = new TextbookChange();
+        textbookChange.setTcCourseId(courseId);
+//        mmap.put("textbookList", textbookChangeService.selectTextbookChangeList(textbookChange));
+        mmap.put("textbookChange", textbookChange);
+        return "/textbook/history";
     }
 
 

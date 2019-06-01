@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+
+<div class="container-div">
+    <div class="row">
+
+        <div class="btn-group-sm hidden-xs" id="toolbar" role="group">
+            <a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="course:index:add">
+                <i class="fa fa-plus"></i> 新增
+            </a>
+            <a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="course:index:edit">
+                <i class="fa fa-edit"></i> 修改
+            </a>
+            <a class="btn btn-danger btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="course:index:remove">
+                <i class="fa fa-remove"></i> 删除
+            </a>
+        </div>
+
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table" data-mobile-responsive="true"></table>
+        </div>
+    </div>
+</div>
+<div th:include="include :: footer"></div>
+<script th:inline="javascript">
+    var bookFlag = [[${@permission.hasPermi('course:index:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('course:index:remove')}]];
+    var types = [[${@dict.getType('sys_course_type')}]];
+    var isBooked = [[${@dict.getType('textbook_book')}]];
+    // var uses = [[${@dict.getType('sys_course_use')}]];
+    var prefix = ctx + "textbook/stuBook";
+
+    $(function() {
+        var options = {
+            url: prefix + "/list",
+            createUrl: prefix + "/book",
+            updateUrl: prefix + "/edit/{id}",
+            removeUrl: prefix + "/remove",
+            modalName: "课程",
+            search: false,
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field : 'courseId',
+                    title : '课程号'
+                },
+                {
+                    field : 'courseName',
+                    title : '课程名称'
+                },
+                {
+                    field : 'courseTextbook',
+                    title : '课程使用教材'
+                },
+                {
+                    field : 'textbookPrice',
+                    title : '教材价格(元)'
+                },
+                {
+                    field: 'courseType',
+                    title: '课程类型',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(types, value);
+                    }
+                },
+                {
+                    field: 'stuBooked',
+                    title: '是否预定',
+                    align: 'center',
+                    formatter: function(value, row, index) {
+                        return $.table.selectDictLabel(isBooked, value);
+                    }
+                },
+                {
+                    title: '操作',
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return useTools(row);
+                    }
+                }]
+        };
+        $.table.init(options);
+    });
+
+
+    /* 课程状态显示 */
+    function useTools(row) {
+        if (row.stuBooked == "isnot") {
+            return '<i class=\"fa fa-toggle-off text-info fa-2x\" onclick="enable(\'' + row.courseId + '\')"></i> ';
+        } else {
+            return '<i class=\"fa fa-toggle-on text-info fa-2x\" onclick="disable(\'' + row.courseId + '\')"></i> ';
+        }
+    }
+
+    /* 取消预定教材 */
+    function disable(courseId) {
+        $.modal.confirm("确认要取消预定吗？", function() {
+            $.operate.post(prefix + "/bookCancel", { "courseId": courseId });
+        })
+    }
+
+    /* 预定教材 */
+    function enable(courseId) {
+        $.modal.confirm("确认要预定该教材吗？", function() {
+            $.operate.post(prefix + "/book", { "courseId": courseId });
+        })
+    }
+</script>
+</body>
+</html>
