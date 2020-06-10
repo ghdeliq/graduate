@@ -15,7 +15,7 @@ import com.numberone.system.service.ISysDictTypeService;
 /**
  * 字典 业务层处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysDictTypeServiceImpl implements ISysDictTypeService

@@ -13,7 +13,7 @@ import com.numberone.common.xss.XssFilter;
 /**
  * Filter配置
  *
- * @author numberone
+ * @author guohui
  */
 @Configuration
 public class FilterConfig

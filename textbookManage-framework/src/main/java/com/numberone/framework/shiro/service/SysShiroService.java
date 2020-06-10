@@ -12,7 +12,7 @@ import com.numberone.system.service.ISysUserOnlineService;
 /**
  * 会话db操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Component
 public class SysShiroService

@@ -11,7 +11,7 @@ import com.numberone.system.service.ISysOperLogService;
 /**
  * 操作日志 服务层处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysOperLogServiceImpl implements ISysOperLogService

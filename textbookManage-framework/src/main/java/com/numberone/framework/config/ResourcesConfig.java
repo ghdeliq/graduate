@@ -10,7 +10,7 @@ import com.numberone.common.config.Global;
 /**
  * 通用配置
  * 
- * @author numberone
+ * @author guohui
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer

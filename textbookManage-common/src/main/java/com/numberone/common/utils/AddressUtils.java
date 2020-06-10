@@ -10,7 +10,7 @@ import com.numberone.common.utils.http.HttpUtils;
 /**
  * 获取地址类
  * 
- * @author numberone
+ * @author guohui
  */
 public class AddressUtils
 {

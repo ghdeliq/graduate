@@ -27,7 +27,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 个人信息 业务处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/user/profile")

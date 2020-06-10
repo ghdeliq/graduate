@@ -11,7 +11,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 用户对象 sys_user
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysUser extends BaseEntity
 {

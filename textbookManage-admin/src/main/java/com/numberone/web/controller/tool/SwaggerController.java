@@ -9,7 +9,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * swagger 接口
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/tool/swagger")

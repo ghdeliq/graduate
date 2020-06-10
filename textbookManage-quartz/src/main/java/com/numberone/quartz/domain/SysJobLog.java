@@ -8,7 +8,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 定时任务调度日志表 sys_job_log
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysJobLog extends BaseEntity
 {

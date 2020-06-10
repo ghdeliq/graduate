@@ -7,7 +7,7 @@ import com.numberone.system.domain.SysMenu;
 /**
  * 菜单表 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysMenuMapper
 {

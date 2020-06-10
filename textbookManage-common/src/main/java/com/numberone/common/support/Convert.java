@@ -11,7 +11,7 @@ import com.numberone.common.utils.StringUtils;
 /**
  * 类型转换器
  * 
- * @author numberone
+ * @author guohui
  */
 public class Convert
 {

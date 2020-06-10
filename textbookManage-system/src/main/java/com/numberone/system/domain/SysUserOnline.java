@@ -9,7 +9,7 @@ import com.numberone.common.enums.OnlineStatus;
 /**
  * 当前在线会话 sys_user_online
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysUserOnline extends BaseEntity
 {

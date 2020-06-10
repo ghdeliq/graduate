@@ -23,7 +23,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 调度任务信息操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/monitor/job")

@@ -23,7 +23,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 菜单信息
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/menu")

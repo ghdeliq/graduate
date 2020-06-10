@@ -9,7 +9,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 菜单权限表 sys_menu
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysMenu extends BaseEntity
 {

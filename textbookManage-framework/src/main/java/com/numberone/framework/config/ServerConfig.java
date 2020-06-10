@@ -8,7 +8,7 @@ import com.numberone.common.utils.ServletUtils;
 /**
  * 服务相关配置
  * 
- * @author numberone
+ * @author guohui
  *
  */
 @Component

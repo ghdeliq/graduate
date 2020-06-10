@@ -23,7 +23,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 参数配置 信息操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/config")

@@ -8,7 +8,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 参数配置表 sys_config
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysConfig extends BaseEntity
 {

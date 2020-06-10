@@ -12,7 +12,7 @@ import com.numberone.common.support.Convert;
 /**
  * 客户端工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class ServletUtils
 {

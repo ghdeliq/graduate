@@ -7,7 +7,7 @@ import com.numberone.common.utils.MessageUtils;
 /**
  * permission 工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class PermissionUtils
 {

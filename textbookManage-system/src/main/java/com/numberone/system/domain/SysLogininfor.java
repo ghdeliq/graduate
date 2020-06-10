@@ -9,7 +9,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 系统访问记录表 sys_logininfor
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysLogininfor extends BaseEntity
 {

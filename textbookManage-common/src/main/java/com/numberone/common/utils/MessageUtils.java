@@ -6,7 +6,7 @@ import com.numberone.common.utils.spring.SpringUtils;
 /**
  * 获取i18n资源文件
  * 
- * @author numberone
+ * @author guohui
  */
 public class MessageUtils
 {

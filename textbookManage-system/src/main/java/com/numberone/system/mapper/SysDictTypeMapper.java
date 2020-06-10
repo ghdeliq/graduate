@@ -7,7 +7,7 @@ import com.numberone.system.domain.SysDictType;
 /**
  * 字典表 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 @Mapper
 public interface SysDictTypeMapper

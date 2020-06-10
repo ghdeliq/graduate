@@ -3,7 +3,7 @@ package com.numberone.common.exception;
 /**
  * 业务异常
  * 
- * @author numberone
+ * @author guohui
  */
 public class BusinessException extends RuntimeException
 {

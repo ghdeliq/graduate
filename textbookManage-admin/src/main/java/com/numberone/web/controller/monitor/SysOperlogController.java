@@ -22,7 +22,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 操作日志记录
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/monitor/operlog")

@@ -21,7 +21,7 @@ import com.numberone.quartz.service.ISysJobLogService;
 /**
  * 定时任务处理
  * 
- * @author numberone
+ * @author guohui
  *
  */
 @DisallowConcurrentExecution

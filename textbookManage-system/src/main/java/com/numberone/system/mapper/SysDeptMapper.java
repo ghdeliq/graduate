@@ -7,7 +7,7 @@ import com.numberone.system.domain.SysDept;
 /**
  * 部门管理 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysDeptMapper
 {

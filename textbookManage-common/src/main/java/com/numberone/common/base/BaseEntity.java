@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 /**
  * Entity基类
  * 
- * @author numberone
+ * @author guohui
  */
 public class BaseEntity implements Serializable
 {

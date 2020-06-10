@@ -6,7 +6,7 @@ import com.numberone.common.utils.StringUtils;
 /**
  * ry数据库表列信息
  * 
- * @author numberone
+ * @author guohui
  */
 public class ColumnInfo
 {

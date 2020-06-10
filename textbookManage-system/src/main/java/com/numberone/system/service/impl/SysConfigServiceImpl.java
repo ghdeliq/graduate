@@ -13,7 +13,7 @@ import com.numberone.system.service.ISysConfigService;
 /**
  * 参数配置 服务层实现
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysConfigServiceImpl implements ISysConfigService

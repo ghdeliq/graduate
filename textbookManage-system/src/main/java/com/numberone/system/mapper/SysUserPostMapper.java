@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysUserPost;
 /**
  * 用户与岗位 表 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysUserPostMapper
 {

@@ -21,7 +21,7 @@ import javax.management.relation.Role;
 /**
  * 首页 业务处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 public class SysIndexController extends BaseController

@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysUserOnline;
 /**
  * 在线用户 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysUserOnlineMapper
 {

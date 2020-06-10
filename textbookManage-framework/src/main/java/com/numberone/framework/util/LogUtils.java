@@ -13,7 +13,7 @@ import com.numberone.common.utils.IpUtils;
 /**
  * 处理并记录日志文件
  * 
- * @author numberone
+ * @author guohui
  */
 public class LogUtils
 {

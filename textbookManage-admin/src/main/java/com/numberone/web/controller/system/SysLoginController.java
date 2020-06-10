@@ -66,9 +66,12 @@ public class SysLoginController extends BaseController
             subject.login(token);
             SysUserRole userRole = roleService.selectRoleIdByUserId(ShiroUtils.getUserId());
             SysRole role = roleService.selectRoleById(userRole.getRoleId());
-            if (role.getRoleKey().equals(userType)) {
-            } else {
-                return error("用户或密码错误");
+            if(role.getRoleKey().equals("admin")) {
+            }else {
+                if (role.getRoleKey().equals(userType)) {
+                } else {
+                    return error("用户或密码错误");
+                }
             }
             return success();
         }

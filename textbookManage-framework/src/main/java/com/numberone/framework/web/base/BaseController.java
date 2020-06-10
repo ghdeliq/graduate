@@ -19,7 +19,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * web层通用数据处理
  * 
- * @author numberone
+ * @author guohui
  */
 public class BaseController
 {

@@ -9,7 +9,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 操作日志记录表 oper_log
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysOperLog extends BaseEntity
 {

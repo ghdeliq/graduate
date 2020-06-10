@@ -7,7 +7,7 @@ import com.numberone.common.utils.StringUtils;
 /**
  * 字符集工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class CharsetKit
 {

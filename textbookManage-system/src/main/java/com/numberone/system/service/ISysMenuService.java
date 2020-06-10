@@ -10,7 +10,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * 菜单 业务层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface ISysMenuService
 {

@@ -19,7 +19,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 图片验证码（支持算术形式）
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/captcha")

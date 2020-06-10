@@ -26,7 +26,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * 操作日志记录处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Aspect
 @Component

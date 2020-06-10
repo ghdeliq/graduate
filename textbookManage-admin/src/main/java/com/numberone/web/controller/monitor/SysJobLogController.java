@@ -22,7 +22,7 @@ import com.numberone.quartz.service.ISysJobLogService;
 /**
  * 调度日志操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/monitor/jobLog")

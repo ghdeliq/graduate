@@ -14,7 +14,7 @@ import com.numberone.common.utils.Threads;
 /**
  * 自定义任务调度器完成
  * 
- * @author numberone
+ * @author guohui
  */
 public class SpringSessionValidationScheduler implements SessionValidationScheduler
 {

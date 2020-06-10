@@ -3,7 +3,7 @@ package com.numberone.common.enums;
 /**
  * 业务操作类型
  * 
- * @author numberone
+ * @author guohui
  */
 public enum BusinessType
 {

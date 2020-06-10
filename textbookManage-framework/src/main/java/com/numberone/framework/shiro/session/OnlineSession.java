@@ -6,7 +6,7 @@ import com.numberone.common.enums.OnlineStatus;
 /**
  * 在线用户会话属性
  * 
- * @author numberone
+ * @author guohui
  */
 public class OnlineSession extends SimpleSession
 {

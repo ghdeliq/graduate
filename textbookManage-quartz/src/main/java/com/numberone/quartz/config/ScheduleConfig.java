@@ -9,7 +9,7 @@ import java.util.Properties;
 /**
  * 定时任务配置
  * 
- * @author numberone
+ * @author guohui
  *
  */
 @Configuration

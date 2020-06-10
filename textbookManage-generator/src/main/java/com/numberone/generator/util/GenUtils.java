@@ -15,7 +15,7 @@ import com.numberone.generator.domain.TableInfo;
 /**
  * 代码生成器 工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class GenUtils
 {

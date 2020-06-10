@@ -25,7 +25,7 @@ import com.numberone.system.service.ISysMenuService;
 /**
  * 菜单 业务层处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysMenuServiceImpl implements ISysMenuService

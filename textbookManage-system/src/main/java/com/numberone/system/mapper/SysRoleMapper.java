@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysRole;
 /**
  * 角色表 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysRoleMapper
 {

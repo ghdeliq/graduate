@@ -27,7 +27,7 @@ import com.numberone.generator.util.VelocityInitializer;
 /**
  * 代码生成 服务层处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class GenServiceImpl implements IGenService

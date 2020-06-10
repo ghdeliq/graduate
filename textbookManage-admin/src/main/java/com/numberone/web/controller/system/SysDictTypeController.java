@@ -23,7 +23,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 数据字典信息
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/dict")

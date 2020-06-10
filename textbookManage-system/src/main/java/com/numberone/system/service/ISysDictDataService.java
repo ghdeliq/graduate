@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysDictData;
 /**
  * 字典 业务层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface ISysDictDataService
 {

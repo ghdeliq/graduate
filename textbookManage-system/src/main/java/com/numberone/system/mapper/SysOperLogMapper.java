@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysOperLog;
 /**
  * 操作日志 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysOperLogMapper
 {

@@ -11,7 +11,7 @@ import com.numberone.framework.web.domain.Server;
 /**
  * 服务器监控
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/monitor/server")

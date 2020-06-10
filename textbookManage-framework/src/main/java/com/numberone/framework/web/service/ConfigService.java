@@ -7,7 +7,7 @@ import com.numberone.system.service.ISysConfigService;
 /**
  * numberone首创 html调用 thymeleaf 实现参数管理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service("config")
 public class ConfigService

@@ -15,7 +15,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * shiro 工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class ShiroUtils
 {

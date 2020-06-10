@@ -19,7 +19,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * 登录密码方法
  * 
- * @author numberone
+ * @author guohui
  */
 @Component
 public class SysPasswordService

@@ -9,7 +9,7 @@ import com.numberone.common.enums.DataSourceType;
 /**
  * 自定义多数据源切换注解
  * 
- * @author numberone
+ * @author guohui
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

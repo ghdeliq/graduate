@@ -18,7 +18,7 @@ import com.numberone.system.service.ISysDeptService;
 /**
  * 部门管理 服务实现
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysDeptServiceImpl implements ISysDeptService

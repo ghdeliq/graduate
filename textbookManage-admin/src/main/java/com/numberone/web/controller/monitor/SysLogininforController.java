@@ -20,7 +20,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 系统访问记录
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/monitor/logininfor")

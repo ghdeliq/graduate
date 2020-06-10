@@ -12,7 +12,7 @@ import com.numberone.framework.util.ShiroUtils;
 /**
  * 验证码过滤器
  * 
- * @author numberone
+ * @author guohui
  */
 public class CaptchaValidateFilter extends AccessControlFilter
 {

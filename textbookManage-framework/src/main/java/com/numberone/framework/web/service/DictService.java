@@ -9,7 +9,7 @@ import com.numberone.system.service.ISysDictDataService;
 /**
  * numberone首创 html调用 thymeleaf 实现字典读取
  * 
- * @author numberone
+ * @author guohui
  */
 @Service("dict")
 public class DictService

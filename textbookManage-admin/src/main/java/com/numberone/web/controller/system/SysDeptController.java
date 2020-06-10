@@ -24,7 +24,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 部门信息
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/dept")

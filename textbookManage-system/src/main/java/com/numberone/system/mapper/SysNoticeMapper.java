@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysNotice;
 /**
  * 公告 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysNoticeMapper
 {

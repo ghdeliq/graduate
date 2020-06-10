@@ -11,7 +11,7 @@ import com.numberone.system.service.ISysLogininforService;
 /**
  * 系统访问日志情况信息 服务层处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysLogininforServiceImpl implements ISysLogininforService

@@ -14,7 +14,7 @@ import com.numberone.framework.util.PermissionUtils;
 /**
  * 自定义异常处理器
  * 
- * @author numberone
+ * @author guohui
  */
 @RestControllerAdvice
 public class DefaultExceptionHandler

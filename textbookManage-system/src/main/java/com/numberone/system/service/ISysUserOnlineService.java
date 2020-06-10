@@ -7,7 +7,7 @@ import com.numberone.system.domain.SysUserOnline;
 /**
  * 在线用户 服务层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface ISysUserOnlineService
 {

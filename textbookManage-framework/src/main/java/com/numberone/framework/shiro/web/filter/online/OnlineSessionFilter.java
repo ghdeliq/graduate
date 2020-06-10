@@ -19,7 +19,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * 自定义访问控制
  * 
- * @author numberone
+ * @author guohui
  */
 public class OnlineSessionFilter extends AccessControlFilter
 {

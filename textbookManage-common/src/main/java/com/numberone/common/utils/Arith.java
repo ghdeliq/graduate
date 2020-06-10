@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * 精确的浮点数运算
  * 
- * @author numberone
+ * @author guohui
  */
 public class Arith
 {

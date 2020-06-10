@@ -54,7 +54,7 @@ import com.numberone.common.utils.StringUtils;
 /**
  * Excel相关处理
  * 
- * @author numberone
+ * @author guohui
  */
 public class ExcelUtil<T>
 {

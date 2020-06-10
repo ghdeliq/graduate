@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 调度任务信息 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysJobMapper
 {

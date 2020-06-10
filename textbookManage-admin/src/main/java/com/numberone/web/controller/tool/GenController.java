@@ -23,7 +23,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 代码生成 操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/tool/gen")

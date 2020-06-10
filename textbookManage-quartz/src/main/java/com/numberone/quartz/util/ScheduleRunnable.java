@@ -10,7 +10,7 @@ import com.numberone.common.utils.spring.SpringUtils;
 /**
  * 执行定时任务
  * 
- * @author numberone
+ * @author guohui
  *
  */
 public class ScheduleRunnable implements Runnable

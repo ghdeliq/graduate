@@ -7,7 +7,7 @@ import com.numberone.common.support.StrFormatter;
 /**
  * 字符串工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils
 {

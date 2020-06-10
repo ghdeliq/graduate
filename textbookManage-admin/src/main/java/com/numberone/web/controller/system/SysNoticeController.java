@@ -22,7 +22,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 公告 信息操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/notice")

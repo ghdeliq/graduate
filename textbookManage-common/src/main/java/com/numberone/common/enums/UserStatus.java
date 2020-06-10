@@ -3,7 +3,7 @@ package com.numberone.common.enums;
 /**
  * 用户状态
  * 
- * @author numberone
+ * @author guohui
  */
 public enum UserStatus
 {

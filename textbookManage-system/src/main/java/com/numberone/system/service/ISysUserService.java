@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * 用户 业务层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface ISysUserService
 {

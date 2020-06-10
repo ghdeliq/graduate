@@ -11,7 +11,7 @@ import com.numberone.common.utils.YamlUtil;
 /**
  * 全局配置类
  * 
- * @author numberone
+ * @author guohui
  */
 public class Global
 {

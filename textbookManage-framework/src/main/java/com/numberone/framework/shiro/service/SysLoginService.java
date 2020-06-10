@@ -24,7 +24,7 @@ import com.numberone.system.service.ISysUserService;
 /**
  * 登录校验方法
  * 
- * @author numberone
+ * @author guohui
  */
 @Component
 public class SysLoginService

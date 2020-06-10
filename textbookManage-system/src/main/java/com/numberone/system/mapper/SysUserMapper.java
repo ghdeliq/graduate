@@ -6,7 +6,7 @@ import com.numberone.system.domain.SysUser;
 /**
  * 用户表 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface SysUserMapper
 {

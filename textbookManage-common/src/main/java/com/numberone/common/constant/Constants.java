@@ -3,7 +3,7 @@ package com.numberone.common.constant;
 /**
  * 通用常量信息
  * 
- * @author numberone
+ * @author guohui
  */
 public class Constants
 {

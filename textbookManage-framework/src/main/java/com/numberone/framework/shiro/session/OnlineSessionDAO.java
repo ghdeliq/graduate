@@ -14,7 +14,7 @@ import com.numberone.framework.shiro.service.SysShiroService;
 /**
  * 针对自定义的ShiroSession的db操作
  * 
- * @author numberone
+ * @author guohui
  */
 public class OnlineSessionDAO extends EnterpriseCacheSessionDAO
 {

@@ -28,7 +28,7 @@ import com.numberone.system.service.ISysUserService;
 /**
  * 用户 业务层处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Service
 public class SysUserServiceImpl implements ISysUserService

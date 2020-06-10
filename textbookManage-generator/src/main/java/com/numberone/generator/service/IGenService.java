@@ -6,7 +6,7 @@ import com.numberone.generator.domain.TableInfo;
 /**
  * 代码生成 服务层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface IGenService
 {

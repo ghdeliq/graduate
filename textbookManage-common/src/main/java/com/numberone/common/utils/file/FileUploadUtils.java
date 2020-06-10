@@ -12,7 +12,7 @@ import com.numberone.common.utils.Md5Utils;
 /**
  * 文件上传工具类
  * 
- * @author numberone
+ * @author guohui
  */
 public class FileUploadUtils
 {

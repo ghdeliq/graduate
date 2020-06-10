@@ -23,7 +23,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * 岗位信息操作处理
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/system/post")

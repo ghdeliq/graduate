@@ -9,7 +9,7 @@ import com.numberone.framework.web.base.BaseController;
 /**
  * druid 监控
  * 
- * @author numberone
+ * @author guohui
  */
 @Controller
 @RequestMapping("/monitor/data")

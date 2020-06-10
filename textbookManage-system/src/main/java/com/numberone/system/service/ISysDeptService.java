@@ -8,7 +8,7 @@ import com.numberone.system.domain.SysRole;
 /**
  * 部门管理 服务层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface ISysDeptService
 {

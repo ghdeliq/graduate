@@ -7,7 +7,7 @@ import com.numberone.generator.domain.TableInfo;
 /**
  * 代码生成 数据层
  * 
- * @author numberone
+ * @author guohui
  */
 public interface GenMapper
 {

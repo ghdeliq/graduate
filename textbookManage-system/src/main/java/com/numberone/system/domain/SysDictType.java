@@ -8,7 +8,7 @@ import com.numberone.common.base.BaseEntity;
 /**
  * 字典类型表 sys_dict_type
  * 
- * @author numberone
+ * @author guohui
  */
 public class SysDictType extends BaseEntity
 {

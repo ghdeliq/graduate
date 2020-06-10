@@ -3,7 +3,7 @@ package com.numberone.common.exception.user;
 /**
  * 用户错误记数异常类
  * 
- * @author numberone
+ * @author guohui
  */
 public class UserPasswordRetryLimitCountException extends UserException
 {
